@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一个孩子的“铤而走险”</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="一个孩子的“铤而走险”" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="Alipay:title" content="一个孩子的“铤而走险”">
+    <meta name="Alipay:desc" content="一个孩子的“铤而走险”">
+    <link rel="stylesheet" href="static/css/utils.css" />
+    <link rel="stylesheet" href="static/css/pages.css" />
+    <script src="static/libs/zepto.min.js"></script>
+    <script src="static/libs/pixi.min.js"></script>
+    <script src="static/libs/template-web.js"></script>
+    <script src="static/libs/html2canvas.js"></script>
+</head>
+<body class="page-screen-0">
+    <div class="page-container" id="J_activityBox">
+        <div class="page-init J_pages page_0 page-current">
+            <div class="page-load">
+                <div class="loadWrap">
+                    <div class="loadBg"></div>
+                    <div class="loadAnim J_load_anim"></div>
+                    <div class="loadTop clearfix">
+                        <div class="loadBarWrap">
+                            <div class="loadBarScroll J_loadBg" style="width: 0"></div>
+                        </div>
+                        <div class="loadTxt J_loadTxt"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-init J_pages page_1">
+            <div class="page-login">
+                <div class="loginBanner J_login_banner"></div>
+                <div class="loginBox clearfix">
+                    <div class="inputBox">
+                        <input class="inputUser J_input_user" type="text" placeholder="点击输入昵称" />
+                        <span class="iconTips J_login_tips"></span>
+                    </div>
+                    <div class="inpuBtn">
+                        <a href="javascript:void(0);" class="loginStart J_btn_login">冒险开始</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-init J_pages page_2">
+            <div class="page-main" id="J_scene_main"></div>
+        </div>
+        <div class="page-init J_pages page_3">
+            <div class="page-question" id="J_page_qustion">
+                <div class="question-wrap">
+                    <div class="qustion-top qustion-bg"></div>
+                    <div class="qustion-bottom J_question_asklist"></div>
+                    <div class="qustion-foot">
+                        <ul class="dot-list J_question_dot"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-init J_pages page_4" id="J_page_results"></div>
+        <div class="musicWrap">
+            <img class="J_audioImg" src="images/icon_music.png" srcset="images/icon_music@2x.png 2x" alt=""/>
+            <audio class="audio-music J_audioMusic" src="audio/bgmusic.mp3"></audio>
+        </div>
+         <div class="reveal-qrimg J_qrimg_wrap">
+            <img id="J_create_img" class="qrcode-img" />
+        </div>
+        <div class="reveal-modal J_layerCont"></div>
+        <div class="reveal-modal-bg J_layerBg"></div>
+    </div>
+    <script src="static/scripts/config.js"></script>
+    <script src="static/scripts/walk.js"></script>
+    <script src="static/scripts/index.js"></script>
+</body>
+</html>
