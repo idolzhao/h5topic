@@ -43,7 +43,7 @@
             'static/images/anim_ball_2.png',
             'static/images/anim_ball_3.png',
             'static/images/anim_ball_4.png',
-            'static/images/anim_bg.png',
+            'static/images/main_scene.png',
             'static/images/anmi_archi.png',
             'static/images/anmi_login.png',
             'static/images/anmi_shadow_1.png',
@@ -52,7 +52,9 @@
             'static/images/anmi_girl_2.png',
             'static/images/anmi_girl_3.png',
             'static/images/anmi_girl_4.png',
-            'static/images/billboard_bg_1.png',
+            'static/images/billboard_scenic.png',
+            'static/images/billboard_family.png',
+            'static/images/billboard_subway.png',
             'static/images/billboard_school.png'
         ]).on("progress", function(target, resource){
             
@@ -108,7 +110,7 @@
                 shadow_arr.push('static/images/anmi_shadow_'+i+'.png');
             }
             spriteBox.shadow = new PIXI.extras.AnimatedSprite.fromImages(shadow_arr);
-            spriteBox.shadow.animationSpeed = -2;
+            spriteBox.shadow.animationSpeed = -0.05;
             spriteBox.shadow.play();
 
             var girl_arr = [];
@@ -127,7 +129,7 @@
                 sceneBox.addChild(spriteBox[key]);//精灵 添加进 容器
             }
             spriteBox.bg.position.set(0, -100);
-            spriteBox.shadow.position.set(170, 560);
+            spriteBox.shadow.position.set(160, 560);
             spriteBox.girl.position.set(420, 570);
             spriteBox.architecture.position.set(-30, 400);
 
@@ -163,12 +165,6 @@
         });
         wrap.append(renderer.view);
 
-        // function rectBindEvent (target, opt) {
-        //     target.on('tap', function(data){
-        //         userInfo.area = opt;
-        //         showLayer(opt);
-        //     });
-        // }
         var _cloud;
         var spriteBox = {};
         var cloudx = 500, cloudy = 150, speedx = 2.5, speedy = 0.25;
@@ -177,6 +173,14 @@
 
         var cloudEndX = -400, cloudEndY = -300;
         var ballEndX = -400, ballEndY = -300;
+
+        // 名牌
+        var bandlist = [
+            {type: 'school'},
+            {type: 'family'},
+            {type: 'scenic'},
+            {type: 'subway'}
+        ];
 
         function setupMain () {
             // cloud
@@ -193,6 +197,10 @@
                 spriteBox['balloon_'+i].vx = speed.vx;
                 spriteBox['balloon_'+i].vy = speed.vy;
             }
+            // 背景
+            var bg = new PIXI.Sprite(PIXI.loader.resources['static/images/main_scene.png'].texture);
+            bg.position.set(0,0);
+            spriteBox.bg = bg;
             // redflag
             var flag_arr = [];
             for(let i=1;i<4;i++){
@@ -201,25 +209,25 @@
             spriteBox.redflag = new PIXI.extras.AnimatedSprite.fromImages(flag_arr);
             spriteBox.redflag.animationSpeed = -0.04;
             spriteBox.redflag.play();
-            // 背景
-            var bg = new PIXI.Sprite(PIXI.loader.resources['static/images/anim_bg.png'].texture);
-            bg.position.set(0,0);
-            spriteBox.bg = bg;
-            // 学校区
-            spriteBox.polySchool = createTransparentPolygon([ 643, 196, 699, 165, 699, 387, 643, 410 ]);
-            params.rectBindEvent(spriteBox.polySchool, 'school');
-            // 快乐基地
-            spriteBox.polyHappy = createTransparentPolygon([ 40, 420, 180, 344, 180, 395, 40, 470 ]);
-            params.rectBindEvent(spriteBox.polyHappy, 'family');
-            // 网红打卡圣地
-            spriteBox.polyCyber = createTransparentPolygon([ 676, 486, 738, 518, 738, 741, 676, 708 ]);
-            params.rectBindEvent(spriteBox.polyCyber, 'scenic');
-            // 早高峰
-            spriteBox.polyPeak = createTransparentPolygon([ 466, 1055, 522, 1027, 522, 1242, 466, 1270 ]);
-            params.rectBindEvent(spriteBox.polyPeak, 'subway');
+            // 名牌
+            for(var n=0; n<bandlist.length; n++) {
+                var item = bandlist[n];
+                var container = new PIXI.Container();
+                var board = new PIXI.Sprite(PIXI.loader.resources['static/images/billboard_'+ item.type +'.png'].texture);
+                board.position.set(0, 0);
+                board.anchor.set(0.5, 0.5);
+                board.scale.set(1, 1);
+                board.buttonMode = true;
+                board.interactive = true;
+                container.addChild(board);
+                container._dir = 1;
+                container._sx = 1;
+                container._sy = 1;
+                container._speed = randomScale();
+                spriteBox['band_'+item.type] = container;
+                params.rectBindEvent(board, item.type);
+            }
             // 
-            spriteBox.textbg_school = new PIXI.Sprite(PIXI.loader.resources['static/images/billboard_bg_1.png'].texture);
-
             for(let key in spriteBox){
                 mainBox.addChild(spriteBox[key]);//精灵 添加进 容器
             }
@@ -238,10 +246,46 @@
                 spriteBox['balloon_'+k].position._startY = pos.y;
             }
             spriteBox.redflag.position.set(431, 57);
-            spriteBox.textbg_school.position.set(641, 167);
+            // 
+            spriteBox.band_school.position.set(670, 290);
+            spriteBox.band_family.position.set(110, 406);
+            spriteBox.band_scenic.position.set(706, 613);
+            spriteBox.band_subway.position.set(494, 1148);
+            // 
             mainBox.scale.set(ww/params.ww, wh/params.wh);//容器根据设计稿 计算缩放
-
             animate();
+        }
+
+        function textScale () {
+            var itemAction = function(item) {
+                var parents = spriteBox['band_'+item.type];
+                var elm = parents.children[0];
+                var dir = parents._dir;
+                var _speed = parents._speed;
+                var sx = parseFloat(elm.scale.x);
+                var sy = parseFloat(elm.scale.y);
+
+                if(dir > 0) {
+                    sx = sx + _speed;
+                    sy = sy + _speed;
+                    if(sx >= 1.2) {
+                        spriteBox['band_'+item.type]._dir = -1;
+                    }
+                }
+                else if(dir < 0){
+                    sx = sx - _speed;
+                    sy = sy - _speed;
+                    if(sx <= 0.9) {
+                        spriteBox['band_'+item.type]._dir = 1;
+                    }
+                }
+                elm.scale.set(sx, sy);
+            };
+            for(var i=0; i<4; i++) {
+                var doact = (function (){
+                    itemAction(bandlist[i]);
+                })();
+            }
         }
 
         function moveCloud () {
@@ -281,6 +325,7 @@
         function animate(){
             moveCloud();
             moveBall();
+            textScale();
             
             renderer.render(mainBox);
             var animationFrame = requestAnimationFrame(animate);
@@ -294,11 +339,15 @@
         graphics.beginFill(0xff6900);
         graphics.drawPolygon(pointList);
         graphics.endFill();
-        graphics.alpha = 0.5;
+        graphics.alpha = 0;
         graphics.position.set(0, 0);
         graphics.buttonMode = true;
         graphics.interactive = true;           
         return graphics;
+    }
+
+    function randomScale () {
+        return randomInt(0.002, 0.005);
     }
 
     function randomCloudPostion () {

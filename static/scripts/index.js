@@ -274,7 +274,7 @@ $(window).on('ready', function () {
             if(info.difficulty.value && starDoms.length) {
                 var strs = '';
                 for(var i=0; i<info.difficulty.value; i++) {
-                    strs += '<img src="images/icon_star.png" srcset="images/icon_star@2x.png 2x" alt="" />';
+                    strs += '<img src="static/images/icon_star.png" srcset="static/images/icon_star@2x.png 2x" alt="" />';
                 }
                 starDoms.html(strs);
             }
@@ -289,10 +289,10 @@ $(window).on('ready', function () {
 			'<div class="modal-box">',
 			'<div class="modalTop">',
 			'<div class="modalTitle modal-title-{{type}}">{{title}}</div>',
-			'<div class="modalMore"><img src="images/icon_pop_adorn_{{type}}.png" srcset="images/icon_pop_adorn_{{type}}@2x.png 2x" alt="" /></div>',
+			'<div class="modalMore"><img src="static/images/icon_pop_adorn_{{type}}.png" srcset="static/images/icon_pop_adorn_{{type}}@2x.png 2x" alt="" /></div>',
 			'</div>',
 			'<div class="modalMid">',
-			'<img src="images/layer_{{type}}.png" srcset="images/layer_{{type}}@2x.png 2x" alt="" />',
+			'<img src="static/images/layer_{{type}}.png" srcset="static/images/layer_{{type}}@2x.png 2x" alt="" />',
 			'</div>',
 			'<div class="modalBot">',
 			'<ul class="detailList">',
@@ -366,9 +366,9 @@ $(window).on('ready', function () {
                     '</div>',
                 '</div>',
                 '<div class="results-bot clearfix">',
-                    '<span class="qrimg-wrap J_img_qrcode"><img src="images/qrcodeimg.png" srcset="images/qrcodeimg@2x.png 2x" alt=""/></span>',
+                    '<span class="qrimg-wrap J_img_qrcode"><img src="static/images/qrcodeimg.png" srcset="static/images/qrcodeimg@2x.png 2x" alt=""/></span>',
                     '<span class="qrimg-desc J_img_qrcode">长按测测<br />你的防骗level</span>',
-                    '<span class="movie-banner"><img src="images/movietext.png" srcset="images/movietext@2x.png 2x" alt=""/></span>',
+                    '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext@2x.png 2x" alt=""/></span>',
                 '</div>',
             '</div>',
         '</div>'].join('');
