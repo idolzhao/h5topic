@@ -37,6 +37,7 @@ $(window).on('ready', function () {
     CHILDS.loadtxt = $('.J_loadTxt');
 
     CHILDS.pageResult = $('#J_page_results');
+    CHILDS.pageShare = $('#J_page_shareimg');
 
     CHILDS.layerCont = $('.J_layerCont');
     CHILDS.layerCover = $('.J_layerBg');
@@ -112,10 +113,8 @@ $(window).on('ready', function () {
          return false;
     });
     // 选项
-    CHILDS.activityBox.delegate('.J_img_qrcode', 'click', function (e) {
-        CHILDS.pageResult.addClass('qrimg-bg');
-        createImage();
-    });
+    // CHILDS.activityBox.delegate('.J_img_qrcode', 'click', function (e) {        
+    // });
     CHILDS.activityBox.delegate('.J_question_ansItem', 'click', function (e) {
 		var _data = $(this).data();
 		// console.log('=========question-item', userInfo.area, userInfo.issueNum, _data.text);
@@ -136,7 +135,7 @@ $(window).on('ready', function () {
             else {
                 choiceQuestion(userInfo.issueNum + 1);
             } 
-        }, 1000);
+        }, 600);
 	});
     // 点
 	CHILDS.activityBox.delegate('.J_quest_dotItem', 'click', function (e) {
@@ -144,7 +143,23 @@ $(window).on('ready', function () {
 		// console.log('========= dot-idx= ', _data.idx);
         choiceQuestion(_data.idx);
 	});
-    
+    // page-result
+    CHILDS.activityBox.delegate('.J_btn_try', 'click', function (e) {
+        pageSwitchTo(2);
+    });
+    CHILDS.activityBox.delegate('.J_btn_share', 'click', function (e) {
+        // console.log('=========== 分享');
+        var str = CHILDS.pageResult.html();
+        CHILDS.pageShare.html(str);
+
+        var html = shareHtml();
+        CHILDS.pageShare.find('.J_share_wrap').html(html);
+        CHILDS.shareImgWrap = $('#J_page_shareimg .J_result_item');
+        CHILDS.shareImgWrap.addClass('result-outer');
+        // pageSwitchTo(5, createImage);
+        pageSwitchTo(5);
+    });
+    // 
     CHILDS.animLoadWalk({
         wrap: $('.J_load_anim'),
         ww: 240,
@@ -180,10 +195,10 @@ $(window).on('ready', function () {
         CHILDS.inputUser.trigger('focus');
     }
     // 页面跳转
-    function pageSwitchTo (num) {
+    function pageSwitchTo (num, callback) {
         // console.log('============= page-switch-to= ', num);
-        var sty = STYPE_PAGE_SCREEN + num;
         if(num == 3 || num == 4) {
+            var sty = STYPE_PAGE_SCREEN + '3';
             if(!CHILDS.mbody.hasClass(sty)) {
                 CHILDS.mbody.addClass(sty);
             }
@@ -240,6 +255,9 @@ $(window).on('ready', function () {
 			renderEvaluationResult();
             pageMove(num);
 		}
+        else {
+            pageMove(num, callback);
+        }
 	}
     // 页面移动
     function pageMove (num, callback) {
@@ -274,7 +292,7 @@ $(window).on('ready', function () {
             if(info.difficulty.value && starDoms.length) {
                 var strs = '';
                 for(var i=0; i<info.difficulty.value; i++) {
-                    strs += '<img src="static/images/icon_star.png" srcset="static/images/icon_star@2x.png 2x" alt="" />';
+                    strs += '<img src="static/images/icon_star.png" srcset="static/images/icon_star.png 375w, static/images/icon_star@2x.png 750w" alt="" />';
                 }
                 starDoms.html(strs);
             }
@@ -289,10 +307,10 @@ $(window).on('ready', function () {
 			'<div class="modal-box">',
 			'<div class="modalTop">',
 			'<div class="modalTitle modal-title-{{type}}">{{title}}</div>',
-			'<div class="modalMore"><img src="static/images/icon_pop_adorn_{{type}}.png" srcset="static/images/icon_pop_adorn_{{type}}@2x.png 2x" alt="" /></div>',
+			'<div class="modalMore"><img src="static/images/icon_pop_adorn_{{type}}.png" srcset="static/images/icon_pop_adorn_{{type}}.png 375w, static/images/icon_pop_adorn_{{type}}@2x.png 750w" alt="" /></div>',
 			'</div>',
 			'<div class="modalMid">',
-			'<img src="static/images/layer_{{type}}.png" srcset="static/images/layer_{{type}}@2x.png 2x" alt="" />',
+			'<img src="static/images/layer_{{type}}.png" srcset="static/images/layer_{{type}}.png 375w,static/images/layer_{{type}}@2x.png 750w" alt="" />',
 			'</div>',
 			'<div class="modalBot">',
 			'<ul class="detailList">',
@@ -343,7 +361,7 @@ $(window).on('ready', function () {
 	// 生成结果模板
 	function createResultTmpl () {
 		return ['',
-		'<div class="page-results result-{{type}}">',
+		'<div class="page-results result-{{type}} J_result_item">',
             '<div class="results-content">',
                 '<div class="results-top results-main-bg"></div>',
                 '<div class="results-mid results-subs-bg">',
@@ -365,14 +383,36 @@ $(window).on('ready', function () {
                         '</ul>',
                     '</div>',
                 '</div>',
-                '<div class="results-bot clearfix">',
-                    '<span class="qrimg-wrap J_img_qrcode"><img src="static/images/qrcodeimg.png" srcset="static/images/qrcodeimg@2x.png 2x" alt=""/></span>',
-                    '<span class="qrimg-desc J_img_qrcode">长按测测<br />你的防骗level</span>',
-                    '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext@2x.png 2x" alt=""/></span>',
+                '<div class="results-bot J_share_wrap">',
+                    '<div class="results-btnwrap clearfix">',
+                        '<span class="btnTry J_btn_try">试试其他</span>',
+                        '<span class="btnDeny">',
+                            '<img src="static/images/but_fire.png" srcset="static/images/but_fire.png 375w, static/images/but_fire@2x.png 750w" alt=""/>',
+                        '</span>',
+                        '<span class="btnTry btnShare J_btn_share">分享</span>',
+                    '</div>',
                 '</div>',
             '</div>',
         '</div>'].join('');
 	}
+
+    function shareHtml () {
+        return ['<div class="results-qrcodewrap clearfix">',
+            '<span class="qrimg-wrap"><img src="static/images/sharechild.jpg" width="100%" height="100%" /></span>',
+            '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
+            '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext.png 375w, static/images/movietext@2x.png 750w" alt=""/></span>',
+        '</div>'].join('');
+    }
+
+    function shareTipsHtml () {
+        return ['<div class="sharetips-wrap">',
+            '<img src="static/images/icon_sharetip.png" srcset="static/images/icon_sharetip.png 375w, static/images/icon_sharetip@2x.png 750w" width="100%" height="100%" />',
+            '<div class="sharetips-arrow">',
+                '<img src="static/images/icon_arrow.png" srcset="static/images/icon_arrow.png 375w, static/images/icon_arrow@2x.png 750w" width="100%" height="100%" />',
+            '</div>',
+        '</div>'].join('');
+    }
+
 	// 渲染问题页
 	function renderQustions () {
 		var info = {
@@ -471,15 +511,16 @@ $(window).on('ready', function () {
     function showLayer () {
         var _top = CHILDS.mbody.scrollTop()-topOffset;
         CHILDS.layerCont.css({
-            'top': _top,
+            // 'top': _top,
             'opacity' : 0,
-            'visibility' : 'visible'
+            'visibility' : 'visible',
+            'display': 'block',
+            'zIndex': 101
         });
-        CHILDS.layerCont.css('zIndex', 101);
-        CHILDS.layerCover.fadeIn(150);
+        CHILDS.layerCover.css('opacity', '0.4').fadeIn(150);
         var timer = setTimeout(function () {
             CHILDS.layerCont.animate({
-                "top": CHILDS.mbody.scrollTop()+topMeasure + 'px',
+                // "top": CHILDS.mbody.scrollTop()+topMeasure + 'px',
                 "opacity" : 1
             }, 300);
             LAYER_IS_SHOW = true;
@@ -492,9 +533,10 @@ $(window).on('ready', function () {
     	CHILDS.layerCover.fadeOut(150);
     	var _top = CHILDS.mbody.scrollTop()-topOffset;
         CHILDS.layerCont.css({
-            'top': _top,
+            // 'top': _top,
             'opacity' : 0,
-            'visibility' : 'visible'
+            'visibility' : 'visible',
+            'display': 'none'
         });
         LAYER_IS_SHOW = false;
         // 
@@ -515,23 +557,80 @@ $(window).on('ready', function () {
     }
     function createImage () {
         //要转换为图片的dom对象
-        var element = $('#J_page_results')[0];
+        var element = CHILDS.shareImgWrap[0];
         //要显示图片的img标签
         var image = $('#J_create_img')[0];
         //调用html2image方法
-        html2image(element, image, function () {
+        html2image(element, image, function (data) {
             $('.J_qrimg_wrap').css('zIndex', 101).show();
-            CHILDS.layerCover.fadeIn(150);
+            CHILDS.layerCover.css('opacity', '0.7').fadeIn(150);
+            // console.log('============', data);
+            var timer = setTimeout(function () {
+                $('.J_qrimg_wrap').append(shareTipsHtml());
+
+                initWxShare();
+            }, 10);
         });
     }
-    function html2image(source,image, callback) {
-        html2canvas(source).then(function(canvas) {
-            var imageData = canvas.toDataURL(1);
-            image.src = imageData;
-            if(callback) {
-                callback();
-            }
+    function html2image(source, image, callback) {
+        html2canvas(source, {
+            onrendered: function(canvas) {
+                var imageData = canvas.toDataURL(1);
+                image.src = imageData;
+                CHILDS.shareData = imageData;
+                if(callback) {
+                    callback(imageData);
+                }
+            },
+            width: 360,
+            height: 600
         });
     }
+    // share.
+    CHILDS.shareData = {
+        title: '来测测你的防骗level',
+        desc: '生活无法“铤而走险”？这里试试',
+        imgUrl: '',
+        link: 'http://byu6990690001.my3w.com/index.html',
+        callback: function(){
+            // share_survey(true);
+        }
+    };
+
+    function initWxShare () {
+        $.ajax({
+            type: "POST", 
+            url: "/membervideo/share.ashx",//后台接口
+            data: parms, //可选参数
+            dataType: "json",
+            success: function(data){ 
+                timestamp = data.timestamp;
+                signature = data.signature;
+                wxShareConf(timestamp, signature);
+            } //可选参数
+        });
+    }
+
+    function wxShareConf (timestamp, signature) {
+        var appId = '';
+        var nonceStr = Math.floor(Math.random() * 2147483648).toString(36);
+        wx.config({
+            debug: true,
+            appId: appId,
+            timestamp: timestamp,
+            nonceStr: nonceStr,
+            signature: signature,
+            jsApiList: [
+                'checkJsApi',
+                'updateAppMessageShareData',
+                'updateTimelineShareData'
+            ]
+        });
+        wx.ready(function() {
+            wx.updateAppMessageShareData(CHILDS.shareData);
+            wx.updateTimelineShareData(CHILDS.shareData);
+        });        
+    }
+
     // pageSwitchTo(2);
 });
