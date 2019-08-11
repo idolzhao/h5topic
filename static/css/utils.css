@@ -63,8 +63,8 @@ html {
 /* page-login */
 .loginBanner {
     width: 3.75rem;
-    height: 5.1rem;
-    margin-bottom: 0.25rem;
+    height: 4.05rem;
+    margin-bottom: 0.2rem;
 }
 .inputBox {
     width: 100%;
@@ -409,7 +409,7 @@ html {
 }
 .loginBanner {
     width: 7.5rem;
-    height: 9.8rem;
+    height: 8.1rem;
     margin-bottom: 0.2rem;
 }
 .inputBox {
@@ -617,6 +617,20 @@ html {
     left: -1.8rem;
     width: 100%;
     height: 100%;
+}
+.sharetips-wrap {
+    position: absolute;
+    width: 3.3rem;
+    height: 2.7rem;
+    top: -1.35rem;
+    left: -1.65rem;
+}
+.sharetips-arrow {
+    position: absolute;
+    width: 2.2rem;
+    height: 3.04rem;
+    top: -2rem;
+    right: -1.7rem;
 }
 
 .icon-correct {

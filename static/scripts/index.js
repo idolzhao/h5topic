@@ -26,8 +26,10 @@ $(window).on('ready', function () {
         area: 'school',
     	question: {}
     };
+    CHILDS.currentPage = 0; // 第0页==load页
     CHILDS.mbody = $('body');
     CHILDS.pageCont = $('.J_page_cont');
+    CHILDS.pageMusic = $('.J_music_wrap');
     CHILDS.activityBox = $('#J_activityBox');
     CHILDS.btnStart = $('.J_btn_login');
     CHILDS.inputUser = $('.J_input_user');
@@ -39,11 +41,13 @@ $(window).on('ready', function () {
     CHILDS.pageResult = $('#J_page_results');
     CHILDS.pageShare = $('#J_page_shareimg');
 
-    CHILDS.layerCont = $('.J_layerCont');
+    CHILDS.layerCont = $('.J_layer_cont');
+    CHILDS.layerIntros = $('.J_layer_intros');
+    CHILDS.layerQrimg = $('.J_layer_qrimg');
     CHILDS.layerCover = $('.J_layerBg');
 
-    var topMeasure  = parseInt(CHILDS.layerCont.css('top'));
-    var topOffset = CHILDS.layerCont.height() + topMeasure;
+    var topMeasure  = parseInt(CHILDS.layerIntros.css('top'));
+    var topOffset = CHILDS.layerIntros.height() + topMeasure;
 
     var pageQuetsWrap = $('#J_page_qustion');
     var loginTips = $('.J_login_tips');
@@ -146,6 +150,7 @@ $(window).on('ready', function () {
     CHILDS.activityBox.delegate('.J_btn_try', 'click', function (e) {
         pageSwitchTo(2);
     });
+    // 分享
     CHILDS.activityBox.delegate('.J_btn_share', 'click', function (e) {
         // console.log('=========== 分享');
         var str = CHILDS.pageResult.html();
@@ -156,8 +161,19 @@ $(window).on('ready', function () {
         CHILDS.shareImgWrap = $('#J_page_shareimg .J_result_item');
         CHILDS.shareImgWrap.addClass('result-outer');
         pageSwitchTo(5, createImage);
-        // pageSwitchTo(5);
     });
+
+    function tapLayer () {
+        if(CHILDS.currentPage == 5) {
+            pageSwitchTo(4);
+            hideLayer();
+        }
+    }
+    // 
+    CHILDS.layerCont.on('tap', tapLayer);
+    CHILDS.layerCont.on('click', tapLayer);
+    CHILDS.layerCover.on('tap', tapLayer);
+    CHILDS.layerCover.on('click', tapLayer);
     // 
     CHILDS.animLoadWalk({
         wrap: $('.J_load_anim'),
@@ -196,8 +212,10 @@ $(window).on('ready', function () {
     // 页面跳转
     function pageSwitchTo (num, callback) {
         // console.log('============= page-switch-to= ', num);
+        CHILDS.currentPage = num;// 当前页
+
         var sty = STYPE_PAGE_SCREEN + '3';
-        if(num == 3 || num == 4) {
+        if(num == 3 || num == 4  || num == 5) {
             if(!CHILDS.pageCont.hasClass(sty)) {
                 CHILDS.pageCont.addClass(sty);
             }
@@ -206,6 +224,12 @@ $(window).on('ready', function () {
             if(CHILDS.pageCont.hasClass(sty)) {
                 CHILDS.pageCont.removeClass(sty);
             }
+        }
+        if(num == 5) {
+            CHILDS.pageMusic.css('zIndex', 99);
+        }
+        else {
+            CHILDS.pageMusic.css('zIndex', 999);
         }
 		if(num == 1) {
 			if(userInfo.nickname) {
@@ -246,7 +270,6 @@ $(window).on('ready', function () {
 			if(LAYER_IS_SHOW) {
 				hideLayer();
 			}
-
             userInfo.issueNum = 0;
             userInfo.question = {};
             pageQuetsWrap.addClass('qustion-'+userInfo.area);
@@ -278,6 +301,14 @@ $(window).on('ready', function () {
             callback && callback();
         }, 705);
     }
+    // 页面自动跳转
+    function pageAutoJump(num, time) {
+        var timer = setTimeout(function () {
+            pageSwitchTo(num);
+            hideLayer();
+        }, time);
+    }
+
     function rectBindEvent (target, type) {
         target.on('tap', function(data){
             toggleTapClick(type);
@@ -296,10 +327,10 @@ $(window).on('ready', function () {
         var tpl = createLayerTmpl();
         var artRender = template.compile(tpl);
         var artTxt = artRender(info);
-        CHILDS.layerCont.html(artTxt);
-        $('#J_layer_wrap').removeClass('dn');
+        CHILDS.layerIntros.html(artTxt);
+        // $('#J_layer_wrap').removeClass('dn');
         // 
-        var starDoms = CHILDS.layerCont.find('.J_stars');
+        var starDoms = CHILDS.layerIntros.find('.J_stars');
         if(info.difficulty.value && starDoms.length) {
             var strs = '';
             for(var i=0; i<info.difficulty.value; i++) {
@@ -420,16 +451,6 @@ $(window).on('ready', function () {
             '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext.png 375w, static/images/movietext@2x.png 750w" alt=""/></span>',
         '</div>'].join('');
     }
-
-    function shareTipsHtml () {
-        return ['<div class="sharetips-wrap">',
-            '<img src="static/images/icon_sharetip.png" srcset="static/images/icon_sharetip.png 375w, static/images/icon_sharetip@2x.png 750w" width="100%" height="100%" />',
-            '<div class="sharetips-arrow">',
-                '<img src="static/images/icon_arrow.png" srcset="static/images/icon_arrow.png 375w, static/images/icon_arrow@2x.png 750w" width="100%" height="100%" />',
-            '</div>',
-        '</div>'].join('');
-    }
-
 	// 渲染问题页
 	function renderQustions () {
 		var info = {
@@ -522,40 +543,67 @@ $(window).on('ready', function () {
 		}
 		return false;
 	}
-    function showLayer () {
-        var _top = CHILDS.mbody.scrollTop()-topOffset;
+    function showLayer (opt) {
+        opt = opt || {};
+        // 宽屏
+        patchWide();
+
+        if(CHILDS.currentPage == 2) {
+            if(CHILDS.layerQrimg.css('display')!='none') {
+                CHILDS.layerQrimg.hide();    
+            }
+            CHILDS.layerIntros.show();
+        }
+        if(CHILDS.currentPage == 5) {
+            if(CHILDS.layerIntros.css('display')!='none') {
+                CHILDS.layerIntros.hide();
+            }
+            CHILDS.layerQrimg.show();
+        }
+        opt.opacity = opt.opacity || '0.4'
         CHILDS.layerCont.css({
-            // 'top': _top,
             'opacity' : 0,
             'visibility' : 'visible',
             'display': 'block',
             'zIndex': 101
         });
-        CHILDS.layerCover.css('opacity', '0.4').fadeIn(150);
+        CHILDS.layerCover.css('opacity', opt.opacity).fadeIn(150);
         var timer = setTimeout(function () {
             CHILDS.layerCont.animate({
-                // "top": CHILDS.mbody.scrollTop()+topMeasure + 'px',
                 "opacity" : 1
             }, 300);
             LAYER_IS_SHOW = true;
         }, 0);
-        // 
-        $("body").on('touchmove',function(event) { event.preventDefault(); }, false);
     }
     function hideLayer () {
-        CHILDS.layerCont.css('zIndex', 5);
+        // 宽屏
+        patchWide();
+        // 
     	CHILDS.layerCover.fadeOut(150);
-    	var _top = CHILDS.mbody.scrollTop()-topOffset;
         CHILDS.layerCont.css({
-            // 'top': _top,
+            'zIndex': 5,
             'opacity' : 0,
             'visibility' : 'visible',
             'display': 'none'
         });
         LAYER_IS_SHOW = false;
-        // 
-        $("body").unbind('touchmove');
     }
+
+    function patchWide () {
+        if(isWideScreen()) {
+            if(CHILDS.currentPage == 5) {
+                CHILDS.isPatched = true;
+                $('html').css({ 'height': '100%', 'overflow': 'hidden' });
+                $('body').css({ 'height': '100%', 'overflow': 'hidden' });
+            }
+            else if(CHILDS.isPatched) {
+                CHILDS.isPatched = false;
+                $('html').css({ 'height': '', 'overflow': '' });
+                $('body').css({ 'height': '', 'overflow': '' });
+            }
+        }
+    }
+
     $.fn.pops = function(){
         var element = $(this);
         element.delegate('.J_btn_changePage', 'click', function(e){
@@ -564,34 +612,39 @@ $(window).on('ready', function () {
             pageSwitchTo(pageNum);
         });
     };
-    CHILDS.layerCont.pops();
+    CHILDS.layerIntros.pops();
 
     function isWideScreen() {
         return window.innerWidth > 750;
     }
     function createImage () {
-        //要转换为图片的dom对象
-        var element = CHILDS.shareImgWrap[0];
-        //要显示图片的img标签
-        var image = $('#J_create_img')[0];
-        //调用html2image方法
-        html2image(element, image, function (data) {
-            $('.J_qrimg_wrap').css('zIndex', 101).show();
-            CHILDS.layerCover.css('opacity', '0.7').fadeIn(150);
-            // console.log('============', data);
-            var timer = setTimeout(function () {
-                $('.J_qrimg_wrap').append(shareTipsHtml());
-
-                initWxShare();
-            }, 10);
-        });
+        if(CHILDS.imgIsShare) {
+            showLayer({opacity: '0.7'});
+        }
+        else {
+            //要转换为图片的dom对象
+            var element = CHILDS.shareImgWrap[0];
+            //要显示图片的img标签
+            var image = $('#J_create_img')[0];
+            //调用html2image方法
+            html2image(element, image, function (data) {
+                // 
+                showLayer({opacity: '0.7'});
+                // console.log('============', data);
+                var timer = setTimeout(function () {
+                    CHILDS.imgIsShare = true;
+                    // 
+                    initWxShare();
+                }, 10);
+            });
+        }
     }
     function html2image(source, image, callback) {
         html2canvas(source, {
             onrendered: function(canvas) {
                 var imageData = canvas.toDataURL(1);
                 image.src = imageData;
-                CHILDS.shareData = imageData;
+                CHILDS.shareData.imgUrl = imageData;
                 if(callback) {
                     callback(imageData);
                 }
