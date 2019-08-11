@@ -46,9 +46,6 @@ $(window).on('ready', function () {
     CHILDS.layerQrimg = $('.J_layer_qrimg');
     CHILDS.layerCover = $('.J_layerBg');
 
-    var topMeasure  = parseInt(CHILDS.layerIntros.css('top'));
-    var topOffset = CHILDS.layerIntros.height() + topMeasure;
-
     var pageQuetsWrap = $('#J_page_qustion');
     var loginTips = $('.J_login_tips');
     var mainScene = $('#J_scene_main');
@@ -234,6 +231,7 @@ $(window).on('ready', function () {
 		if(num == 1) {
 			if(userInfo.nickname) {
 				CHILDS.inputUser.val(userInfo.nickname);
+                CHILDS.inputUser.trigger('input');
 			}
             pageMove(num, function () {
                 // takeFocus();
