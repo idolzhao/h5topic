@@ -239,15 +239,12 @@ $(window).on('ready', function () {
                 // takeFocus();
                 // CHILDS.mbody.removeClass(STYPE_PAGE_SCREEN+'0');
             });
-            if(!CHILDS.isLoadMain) {
-                CHILDS.animLoginScene({
-                    wrap: $('.J_login_banner'),
-                    ww: 750,
-                    wh: 810
-                }, function () {
-                    CHILDS.isLoadMain = true;
-                });
-            }
+            
+            CHILDS.animLoginScene({
+                wrap: $('.J_login_banner'),
+                ww: 750,
+                wh: 810
+            });
 		}
 		else if(num == 2) {
 			if(LAYER_IS_SHOW) {
@@ -258,12 +255,17 @@ $(window).on('ready', function () {
                     pageQuetsWrap.removeClass('qustion-'+userInfo.area);
                 }
                 pageMove(num);
-                CHILDS.animMainScene({
-                    wrap: mainScene,
-                    ww: 750,
-                    wh: 1334,
-                    rectBindEvent: rectBindEvent
-                });
+
+                if(!CHILDS.isLoadMain) {
+                    CHILDS.animMainScene({
+                        wrap: mainScene,
+                        ww: 750,
+                        wh: 1334,
+                        rectBindEvent: rectBindEvent
+                    }, function () {
+                        CHILDS.isLoadMain = true;
+                    });
+                }
             }
 		}
 		else if(num == 3) {

@@ -254,6 +254,8 @@
             // 
             mainBox.scale.set(ww/params.ww, wh/params.wh);//容器根据设计稿 计算缩放
             animate();
+            // 
+            callback && callback();
         }
 
         function textScale () {
