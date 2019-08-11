@@ -27,15 +27,15 @@ $(window).on('ready', function () {
     	question: {}
     };
     CHILDS.mbody = $('body');
+    CHILDS.pageCont = $('.J_page_cont');
     CHILDS.activityBox = $('#J_activityBox');
     CHILDS.btnStart = $('.J_btn_login');
     CHILDS.inputUser = $('.J_input_user');
-
+    
     CHILDS.pages = $('.J_pages');// 页面
 
     CHILDS.loadBox = $('.J_loadBg');
     CHILDS.loadtxt = $('.J_loadTxt');
-
     CHILDS.pageResult = $('#J_page_results');
     CHILDS.pageShare = $('#J_page_shareimg');
 
@@ -155,8 +155,8 @@ $(window).on('ready', function () {
         CHILDS.pageShare.find('.J_share_wrap').html(html);
         CHILDS.shareImgWrap = $('#J_page_shareimg .J_result_item');
         CHILDS.shareImgWrap.addClass('result-outer');
-        // pageSwitchTo(5, createImage);
-        pageSwitchTo(5);
+        pageSwitchTo(5, createImage);
+        // pageSwitchTo(5);
     });
     // 
     CHILDS.animLoadWalk({
@@ -196,17 +196,17 @@ $(window).on('ready', function () {
     // 页面跳转
     function pageSwitchTo (num, callback) {
         // console.log('============= page-switch-to= ', num);
-        // if(num == 3 || num == 4) {
-        //     var sty = STYPE_PAGE_SCREEN + '3';
-        //     if(!CHILDS.mbody.hasClass(sty)) {
-        //         CHILDS.mbody.addClass(sty);
-        //     }
-        // }
-        // else {
-        //     if(CHILDS.mbody.hasClass(sty)) {
-        //         CHILDS.mbody.removeClass(sty);
-        //     }
-        // }
+        var sty = STYPE_PAGE_SCREEN + '3';
+        if(num == 3 || num == 4) {
+            if(!CHILDS.pageCont.hasClass(sty)) {
+                CHILDS.pageCont.addClass(sty);
+            }
+        }
+        else {
+            if(CHILDS.pageCont.hasClass(sty)) {
+                CHILDS.pageCont.removeClass(sty);
+            }
+        }
 		if(num == 1) {
 			if(userInfo.nickname) {
 				CHILDS.inputUser.val(userInfo.nickname);
@@ -215,11 +215,15 @@ $(window).on('ready', function () {
                 // takeFocus();
                 // CHILDS.mbody.removeClass(STYPE_PAGE_SCREEN+'0');
             });
-            CHILDS.animLoginScene({
-                wrap: $('.J_login_banner'),
-                ww: 750,
-                wh: 810
-            });
+            if(!CHILDS.isLoadMain) {
+                CHILDS.animLoginScene({
+                    wrap: $('.J_login_banner'),
+                    ww: 750,
+                    wh: 810
+                }, function () {
+                    CHILDS.isLoadMain = true;
+                });
+            }
 		}
 		else if(num == 2) {
 			if(LAYER_IS_SHOW) {
@@ -603,33 +607,17 @@ $(window).on('ready', function () {
         imgUrl: '',
         link: 'http://byu6990690001.my3w.com/index.html',
         callback: function(){
-            // share_survey(true);
         }
     };
 
     function initWxShare () {
-        $.ajax({
-            type: "POST", 
-            url: "/membervideo/share.ashx",//后台接口
-            data: parms, //可选参数
-            dataType: "json",
-            success: function(data){ 
-                timestamp = data.timestamp;
-                signature = data.signature;
-                wxShareConf(timestamp, signature);
-            } //可选参数
-        });
-    }
-
-    function wxShareConf (timestamp, signature) {
-        var appId = '';
-        var nonceStr = Math.floor(Math.random() * 2147483648).toString(36);
+        var parms = $('#J_activityBox').data();
         wx.config({
-            debug: true,
-            appId: appId,
-            timestamp: timestamp,
-            nonceStr: nonceStr,
-            signature: signature,
+            debug: false,
+            appId: parms.appId,
+            timestamp: parms.timestamp,
+            nonceStr: parms.nonceStr,
+            signature: parms.signature,
             jsApiList: [
                 'checkJsApi',
                 'updateAppMessageShareData',

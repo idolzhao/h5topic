@@ -52,9 +52,11 @@
 }
 .page_3,
 .page_4 {
-    background: url("../images/bg_question.png") repeat;
+    background: url("../images/gray_grid.png") repeat;
 }
-
+.page-screen-3 {
+    background: url("../images/gray_grid.png") repeat;
+}
 .page-enter-bottom-0 {
     -webkit-animation: enter-bottom-0 .7s forwards;
     -moz-animation: enter-bottom-0 .7s forwards;
@@ -394,7 +396,7 @@
 }
 
 .result-outer {
-    background: url("../images/bg_question.png") repeat 0 0;
+    background: url("../images/gray_grid.png") repeat;
 }
 .results-content {
     position: relative;

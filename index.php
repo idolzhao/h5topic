@@ -1,3 +1,8 @@
+<?php
+require_once "jssdk.php";
+$jssdk = new Jssdk();
+$info = $jssdk->getInfo();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +10,7 @@
     <title>来测测你的防骗level</title>
     <meta name="keywords" content="来测测你的防骗level,一个孩子的“铤而走险”">
     <meta name="description" content="生活无法“铤而走险”？这里试试" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta name="title" content="来测测你的防骗level">
     <meta name="desc" content="生活无法“铤而走险”？这里试试">
     <meta name="image" content="//byu6990690001.my3w.com/static/images/danger.png"/>
@@ -21,8 +26,10 @@
     <script src="static/libs/html2canvas.js"></script>
 </head>
 <body>
-    <div class="page-container" id="J_activityBox" data-app-id="appId" data-timestamp="timestamp" data-nonce-str="nonceStr" data-signature="signature">
-        <div class="page-cont J_page_cont">
+    <div class="page-container" id="J_activityBox" data-app-id="<?php echo $info["appId"];?>" 
+        data-timestamp="<?php echo $info["timestamp"];?>" data-nonce-str="<?php echo $info["nonceStr"];?>" 
+        data-signature="<?php echo $info["signature"];?>">
+        <div class="page-cont">
             <div class="page-init J_pages page_0 page-current">
                 <div class="page-load">
                     <div class="loadWrap">
@@ -73,7 +80,6 @@
             </div>
             <div class="reveal-modal J_layerCont"></div>
             <div class="reveal-modal-bg J_layerBg"></div>
-
         </div>
     </div>
     <script src="static/scripts/config.js"></script>
