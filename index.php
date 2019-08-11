@@ -10,7 +10,7 @@ $info = $jssdk->getInfo();
     <title>来测测你的防骗level</title>
     <meta name="keywords" content="来测测你的防骗level,一个孩子的“铤而走险”">
     <meta name="description" content="生活无法“铤而走险”？这里试试" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"/>
     <meta name="title" content="来测测你的防骗level">
     <meta name="desc" content="生活无法“铤而走险”？这里试试">
     <meta name="image" content="//byu6990690001.my3w.com/static/images/danger.png"/>
@@ -29,7 +29,7 @@ $info = $jssdk->getInfo();
     <div class="page-container" id="J_activityBox" data-app-id="<?php echo $info["appId"];?>" 
         data-timestamp="<?php echo $info["timestamp"];?>" data-nonce-str="<?php echo $info["nonceStr"];?>" 
         data-signature="<?php echo $info["signature"];?>">
-        <div class="page-cont">
+        <div class="page-cont J_page_cont">
             <div class="page-init J_pages page_0 page-current">
                 <div class="page-load">
                     <div class="loadWrap">
@@ -70,17 +70,25 @@ $info = $jssdk->getInfo();
                 </div>
             </div>
             <div class="page-init J_pages page_4" id="J_page_results"></div>
-            <div class="page-init J_pages page_5" id="J_page_shareimg"></div>
-            <div class="musicWrap">
+            <div class="page-init J_pages page_5 page-screen-3" id="J_page_shareimg"></div>
+            <div class="musicWrap J_music_wrap">
                 <img class="J_audioImg" src="static/images/icon_music.png" srcset="static/images/icon_music.png 375w, static/images/icon_music@2x.png 750w" alt=""/>
                 <audio class="audio-music J_audioMusic" src="static/audio/bgmusic.mp3"></audio>
             </div>
-             <div class="reveal-qrimg J_qrimg_wrap">
-                <img id="J_create_img" class="qrcode-img" />
-            </div>
-            <div class="reveal-modal J_layerCont"></div>
-            <div class="reveal-modal-bg J_layerBg"></div>
         </div>
+        <div class="reveal-modal-cont J_layer_cont">
+            <div class="reveal-modal J_layer_intros"></div>
+            <div class="reveal-qrimg J_layer_qrimg">
+                <img id="J_create_img" class="qrcode-img" />
+                <div class="sharetips-wrap">
+                    <img src="static/images/icon_sharetip.png" srcset="static/images/icon_sharetip.png 375w, static/images/icon_sharetip@2x.png 750w" width="100%" height="100%" />
+                    <div class="sharetips-arrow">
+                        <img src="static/images/icon_arrow.png" srcset="static/images/icon_arrow.png 375w, static/images/icon_arrow@2x.png 750w" width="100%" height="100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reveal-modal-bg J_layerBg"></div>        
     </div>
     <script src="static/scripts/config.js"></script>
     <script src="static/scripts/walk.js"></script>
