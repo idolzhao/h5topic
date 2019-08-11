@@ -120,7 +120,7 @@
             spriteBox.girl = new PIXI.extras.AnimatedSprite.fromImages(girl_arr);
             spriteBox.girl.animationSpeed = -0.06;
             spriteBox.girl.play();
-            spriteBox.shadow.scale.set(1.1, 1);
+            spriteBox.girl.scale.set(1.1, 1.1);
 
             var architecture = new PIXI.Sprite(PIXI.loader.resources['static/images/anmi_archi.png'].texture);
             spriteBox.architecture = architecture;

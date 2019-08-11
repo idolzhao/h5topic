@@ -39,26 +39,22 @@
     top: 0;
     z-index: 10;
     width: 100%;
-    height: 100%;
 }
 .page-current {
     display: block;
 }
 .page_0 {
+    height: 100%;
+    background: url("../images/grid.png") repeat 0 0;
 }
 .page_2 {
     background-color: #E3F9FF;
 }
-.page_3 {
-}
+.page_3,
 .page_4 {
+    background: url("../images/bg_question.png") repeat;
 }
-.page-screen-0 {
-    background: url("../images/grid.png") repeat 0 0;
-}
-.page-screen-3 {
-    background: url("../images/bg_question.png") repeat 0 0;
-}
+
 .page-enter-bottom-0 {
     -webkit-animation: enter-bottom-0 .7s forwards;
     -moz-animation: enter-bottom-0 .7s forwards;
@@ -156,11 +152,7 @@
     box-shadow: 0 0.02rem 0.04rem 0 rgba(255,131,127,0.50);
     background-image: linear-gradient(166deg, #FF978A 0%, #FF5A68 100%);
 }
-/* main-scene */
-.page-main {
-    width: 100%;
-    height: 100%;
-}
+
 /* page-layer */
 .reveal-modal-wrap {
     position: rel1ative;
@@ -222,13 +214,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 0.76rem;
-    height: 0.47rem;
 }
-.modalMid {
-    margin-bottom: 0.2rem;
-}
-.modalMid img {
+.modalMore img {
     width: 100%;
     height: 100%;
 }
@@ -243,32 +230,28 @@
     color: #999999;
     line-height: 1.2;
 }
-.starWrap img {
-    margin-top: -0.02rem;
-}
+
 .detailList {
     margin-bottom: 0.2rem;
 }
 .modalBtnWrap {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    height: 0.44rem;
 }
 .btnSwitch {
     display: inline-block;
-    width: 1.3rem;
     height: 0.44rem;
-    text-align: center;
     line-height: 0.44rem;
     border-radius: 0.22rem;
     box-shadow: 0 0.04rem 0.06rem 0 rgba(0,0,0,0.10);
+    text-align: center;
 }
 .btnPrev {
+    float: left;
     color: #999999;
     background: #FFFFFF;
 }
 .btnNext {
+    float: right;
     color: #FFFFFF;
 }
 .modal-school .btnPrev {
@@ -302,23 +285,21 @@
     width: 100%;
 }
 .qustion-top {
-    position: absolute;
+    /*position: absolute;
     left: 0;
     top: 0;
-    z-index: 10;
+    z-index: 10;*/
     margin-bottom: 0.4rem;
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
 }
 .qustion-bottom {
-    position: absolute;
-    z-index: 15;
+    /*position: absolute;
+    z-index: 15;*/
     width: 100%;
 }
 .qustion-foot {
-    position: absolute;
-    z-index: 20;
     width: 100%;
 }
 .qustion-title {
@@ -348,8 +329,6 @@
 }
 .qustion-item {
     position: relative;
-    display: flex;
-    align-items: center;
 
     background-size: contain;
     background-repeat: no-repeat;
@@ -358,33 +337,39 @@
     transform: translateY(25px);
     transition: all .4s;
 }
+.qustion-item span {
+    display: inline-block;
+    float: left;
+}
+.qustion-item span.questRes {
+    float: none;
+    position: absolute;
+}
+
+.qustion-list li.qustion-item:last-child {
+    margin-bottom: 0;
+}
 .questTitle {
     display: inline-block;
-    margin-right: 0.4rem;
     font-family: "SourceHanSansCN-Medium";
     color: #000000;
 }
-.questRes {
-    position: absolute;
-    display: inline-block;
-}
-.dot-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
 
+.dot-list {
+    text-align: center;
+    vertical-align: middle;
     opacity: 0;
     transform: translateY(25px);
     transition: all .4s;
 }
-.dotIcon {
+.dot-list .dot-item {
     display: inline-block;
     border: 1px solid #333333;
 }
-.dot-current .dotIcon {
+.dot-list .dot-current {
     background-color: #000000;
 }
+
 .qustion-active {
     display: block;
 }
@@ -448,13 +433,15 @@
     border-bottom: 1px solid transparent;
 }
 .restUser {
-    width: 60%;
     margin-left: 0.1rem;
     margin-right: 0.1rem;
     font-family: "SourceHanSansCN-Medium";
     color: #FC5B59;
     text-align: center;
     border-bottom: 1px solid #666666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .restTips {
     margin-top: -0.05rem;
@@ -471,7 +458,6 @@
     position: relative;
     z-index: 20;
     width: 100%;
-    height: 100%;
 }
 .results-qrcodewrap {
     width: 100%;
@@ -496,8 +482,6 @@
 }
 .btnDeny {
     position: absolute;
-    top: 50%;
-    left: 50%;
 }
 .qrimg-desc {
     font-family: "SourceHanSansCN-Medium";
@@ -505,6 +489,9 @@
     font-weight: bold;
 }
 
-
+.movie-banner img {
+    width: 100%;
+    height: 100%;
+}
 
 

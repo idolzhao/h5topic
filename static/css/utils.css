@@ -15,6 +15,7 @@ html {
     font-size: 100px;
     font-size: 26.66666667vw
 }
+.page-container .page_0,
 .page-cont {
     width: 3.75rem;
 }
@@ -23,6 +24,12 @@ html {
     right: 0.2rem;
     width: 0.3rem;
     height: 0.3rem;
+    line-height: 0.3rem;
+    text-align: center;
+}
+.musicWrap img {
+    width: 0.24rem;
+    height: 0.24rem;
 }
 .page-init {
     width: 3.75rem;
@@ -40,7 +47,7 @@ html {
 }
 .loadWrap {
     position: absolute;
-    top: -1.4rem;
+    top: -2rem;
     left: -1.6rem;
 }
 .loadBarWrap {
@@ -68,10 +75,10 @@ html {
     height: 0.3rem;
 }
 /* main-scene */
-/*.page-main {
+.page-main {
     width: 3.75rem;
     height: 6.68rem;
-}*/
+}
 /* page-layer */
 .reveal-modal {
     width: 3.1rem;
@@ -87,12 +94,19 @@ html {
     height: 0.43rem;
     margin-bottom: 0.15rem;
 }
+.modalMid {
+    margin-bottom: 0.2rem;
+}
+.modalMid img {
+    width: 2.9rem;
+    height: 1.44rem;
+}
 .modal-box .modalTitle {
     width: 1.64rem;
     height: 0.43rem;
     line-height: 0.43rem;
 }
-.modalMore {
+.modal-box .modalMore {
     width: 0.76rem;
     height: 0.47rem;
 }
@@ -104,6 +118,18 @@ html {
     margin-bottom: 0.15rem;
     font-size: 0.12rem;
 }
+.starWrap img {
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-top: -0.02rem;
+}
+.modalBtnWrap {
+    height: 0.5rem;
+}
+.btnSwitch {
+    width: 1.3rem;
+}
+
 /* page-questions */
 .page-question,
 .page-results {
@@ -115,10 +141,10 @@ html {
     height: 2.47rem;
 }
 .qustion-foot {
-    top: 5.4rem;
+    margin-top: 0.1rem;
 }
 .qustion-bottom {
-    top: 1.54rem;
+    margin-top: -1.32rem;
 }
 .askTitleItem {
     height: 0.6rem;
@@ -127,7 +153,7 @@ html {
 }
 .qustion-list {
     width: 3.2rem;
-    height: 2.6rem;
+    /*height: 2.6rem;*/
 }
 .qustion-item {
     height: 0.58rem;
@@ -141,23 +167,20 @@ html {
 }
 .questTitle {
     font-size: 0.15rem;
-    line-height: 1.2;
 }
 .qustion-item .questRes {
     width: 0.3rem;
     height: 0.3rem;
-    right: 0.1rem;
+    top: 0.14rem;
+    right: 0.05rem;
+}
+.dot-list {
+    padding: 0.2rem 0 0.1rem;
 }
 .dot-item {
-    width: 0.2rem;
-    height: 0.2rem;
-    margin: 0.01rem;
-    text-align: center;
-    line-height: 0.2rem;
-}
-.dotIcon {
     width: 0.06rem;
     height: 0.06rem;
+    margin: 0 0.14rem;
     border-radius: 0.06rem;
 }
 /* page-results */
@@ -185,7 +208,9 @@ html {
     font-size: 0.14rem;
 }
 .results-item span.restUser {
+    width: 55%;
     font-size: 0.16rem;
+    margin-bottom: -0.04rem;
 }
 
 .results-btnwrap {
@@ -212,6 +237,11 @@ html {
     margin-top: 0.22rem;
     line-height: 0.44rem;
     font-size: 0.14rem;
+}
+.btnDeny {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 .btnDeny img {
     margin-left: -0.33rem;
@@ -325,6 +355,7 @@ html {
 }
 }
 @media screen and (min-width: 480px) {
+.page-container .page_0,
 .page-cont {
     width: 7.5rem;
 }
@@ -333,9 +364,15 @@ html {
     right: 0.3rem;
     width: 0.6rem;
     height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
 }
-.page-init {
-    /*width: 7.5rem;*/
+.musicWrap img {
+    width: 0.48rem;
+    height: 0.48rem;
+}
+.page-cont .page-init {
+    width: 7.5rem;
 }
 /* page-loading */
 .loadBg {
@@ -386,10 +423,10 @@ html {
     float: right;
 }
 /* main-scene */
-/*.page-main {
+.page-main {
     width: 7.5rem;
     height: 13.34rem;
-}*/
+}
 /* page-layer */
 .reveal-modal,
 .reveal-qrimg {
@@ -407,13 +444,20 @@ html {
     height: 0.86rem;
     margin-bottom: 0.3rem;
 }
+.modalMid {
+    margin-bottom: 0.3rem;
+}
+.modalMid img {
+    width: 5.8rem;
+    height: 2.88rem;
+}
 .modal-box .modalTitle {
     width: 3.28rem;
     height: 0.86rem;
     line-height: 0.86rem;
     font-size: 0.34rem;
 }
-.modalMore {
+.modal-box .modalMore {
     width: 1.52rem;
     height: 0.94rem;
 }
@@ -424,6 +468,17 @@ html {
 .modalSectionCont {
     margin-bottom: 0.15rem;
     font-size: 0.14rem;
+}
+.starWrap img {
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: -0.06rem;
+}
+.modalBtnWrap {
+    height: 0.8rem;
+}
+.btnSwitch {
+    width: 1.8rem;
 }
 /* page-questions */
 .page-question,
@@ -436,11 +491,10 @@ html {
     height: 4.94rem;
 }
 .qustion-foot {
-    top: 10.8rem;
+    margin-top: 0.2rem;
 }
-
 .qustion-bottom {
-    top: 3.08rem;
+    margin-top: -2.3rem;
 }
 .askTitleItem {
     height: 1.2rem;
@@ -450,7 +504,7 @@ html {
 }
 .qustion-list {
     width: 6.4rem;
-    height: 4.98rem;
+    /*height: 4.98rem;*/
 }
 .qustion-item {
     height: 1.16rem;
@@ -464,23 +518,20 @@ html {
 }
 .questTitle {
     font-size: 0.2rem;
-    line-height: 1.4;
 }
 .qustion-item .questRes {
     width: 0.6rem;
     height: 0.6rem;
-    right: 0.15rem;
+    top: 0.25rem;
+    right: 0.1rem;
+}
+.dot-list {
+    padding: 0.4rem 0 0.2rem;
 }
 .dot-item {
-    width: 0.5rem;
-    height: 0.5rem;
-    margin: 0.03rem;
-    text-align: center;
-    line-height: 0.5rem;
-}
-.dotIcon {
     width: 0.2rem;
     height: 0.2rem;
+    margin: 0 0.28rem;
     border-radius: 0.2rem;
 }
 /* page-results */
@@ -509,11 +560,14 @@ html {
     font-size: 0.24rem;
 }
 .results-item span.restUser {
+    width: 65%;
     font-size: 0.32rem;
+    margin-bottom: -0.06rem;
 }
 
 .results-btnwrap {
     top: -0.5rem;
+    height: 1.8rem;
 }
 .qrimg-wrap {
     width: 0.96rem;
@@ -536,6 +590,11 @@ html {
     margin-top: 0.56rem;
     line-height: 0.88rem;
     font-size: 0.28rem;
+}
+.btnDeny {
+    position: absolute;
+    top: 20%;
+    left: 47%;
 }
 .btnDeny img {
     margin-left: -0.72rem;

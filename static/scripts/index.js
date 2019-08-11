@@ -41,7 +41,6 @@ $(window).on('ready', function () {
 
     CHILDS.layerCont = $('.J_layerCont');
     CHILDS.layerCover = $('.J_layerBg');
-    CHILDS.questDot = $('.J_question_dot');
 
     var topMeasure  = parseInt(CHILDS.layerCont.css('top'));
     var topOffset = CHILDS.layerCont.height() + topMeasure;
@@ -109,9 +108,9 @@ $(window).on('ready', function () {
     });
 
     // 禁止页面上下滑屏
-    CHILDS.activityBox.on("touchmove", function(e) {
-         return false;
-    });
+    // CHILDS.activityBox.on("touchmove", function(e) {
+    //      return false;
+    // });
     // 选项
     // CHILDS.activityBox.delegate('.J_img_qrcode', 'click', function (e) {        
     // });
@@ -177,10 +176,10 @@ $(window).on('ready', function () {
         if(!isWideScreen()) {
             w = w + "px";
             h = h + "px";
-            $("html").height(h);
-            CHILDS.activityBox.height(h).width(w);
+            // $("html").height(h);
+            // CHILDS.activityBox.height(h).width(w);
             mainScene.height(h).width(w);
-            CHILDS.pages.height(h);
+            // CHILDS.pages.height(h);
         }
     }
     // 检测输入昵称
@@ -197,24 +196,24 @@ $(window).on('ready', function () {
     // 页面跳转
     function pageSwitchTo (num, callback) {
         // console.log('============= page-switch-to= ', num);
-        if(num == 3 || num == 4) {
-            var sty = STYPE_PAGE_SCREEN + '3';
-            if(!CHILDS.mbody.hasClass(sty)) {
-                CHILDS.mbody.addClass(sty);
-            }
-        }
-        else {
-            if(CHILDS.mbody.hasClass(sty)) {
-                CHILDS.mbody.removeClass(sty);
-            }
-        }
+        // if(num == 3 || num == 4) {
+        //     var sty = STYPE_PAGE_SCREEN + '3';
+        //     if(!CHILDS.mbody.hasClass(sty)) {
+        //         CHILDS.mbody.addClass(sty);
+        //     }
+        // }
+        // else {
+        //     if(CHILDS.mbody.hasClass(sty)) {
+        //         CHILDS.mbody.removeClass(sty);
+        //     }
+        // }
 		if(num == 1) {
 			if(userInfo.nickname) {
 				CHILDS.inputUser.val(userInfo.nickname);
 			}
             pageMove(num, function () {
-                takeFocus();
-                CHILDS.mbody.removeClass(STYPE_PAGE_SCREEN+'0');
+                // takeFocus();
+                // CHILDS.mbody.removeClass(STYPE_PAGE_SCREEN+'0');
             });
             CHILDS.animLoginScene({
                 wrap: $('.J_login_banner'),
@@ -277,29 +276,37 @@ $(window).on('ready', function () {
     }
     function rectBindEvent (target, type) {
         target.on('tap', function(data){
-            type = type || 'school';
-            userInfo.area = type;
-            // console.log('===============111--rectBindEvent-', type);
-            var info = childData[type];
-            currentScene = info;
-            var tpl = createLayerTmpl();
-            var artRender = template.compile(tpl);
-            var artTxt = artRender(info);
-            CHILDS.layerCont.html(artTxt);
-            $('#J_layer_wrap').removeClass('dn');
-            // 
-            var starDoms = CHILDS.layerCont.find('.J_stars');
-            if(info.difficulty.value && starDoms.length) {
-                var strs = '';
-                for(var i=0; i<info.difficulty.value; i++) {
-                    strs += '<img src="static/images/icon_star.png" srcset="static/images/icon_star.png 375w, static/images/icon_star@2x.png 750w" alt="" />';
-                }
-                starDoms.html(strs);
-            }
-            // 
-            showLayer();
+            toggleTapClick(type);
+        });
+        target.on('click', function(data){
+            toggleTapClick(type);
         });
     }
+
+    function toggleTapClick (type) {
+        type = type || 'school';
+        userInfo.area = type;
+        // console.log('===============111--rectBindEvent-', type);
+        var info = childData[type];
+        currentScene = info;
+        var tpl = createLayerTmpl();
+        var artRender = template.compile(tpl);
+        var artTxt = artRender(info);
+        CHILDS.layerCont.html(artTxt);
+        $('#J_layer_wrap').removeClass('dn');
+        // 
+        var starDoms = CHILDS.layerCont.find('.J_stars');
+        if(info.difficulty.value && starDoms.length) {
+            var strs = '';
+            for(var i=0; i<info.difficulty.value; i++) {
+                strs += '<img src="static/images/icon_star.png" srcset="static/images/icon_star.png 375w, static/images/icon_star@2x.png 750w" alt="" />';
+            }
+            starDoms.html(strs);
+        }
+        // 
+        showLayer();
+    }
+
 	// 生成浮层模板
 	function createLayerTmpl () {
 		return ['',
@@ -325,7 +332,7 @@ $(window).on('ready', function () {
 			'<div class="starWrap J_stars"></div>',
 			'</li>',
 			'</ul>',
-			'<div class="modalBtnWrap">',
+			'<div class="modalBtnWrap clearfix">',
 			'<span class="btnSwitch btnPrev J_btn_changePage" data-page="2">emmmm...</span>',
 			'<span class="btnSwitch btnNext J_btn_changePage" data-page="3">“铤而走险”一下！</span>',
 			'</div>',
@@ -334,11 +341,16 @@ $(window).on('ready', function () {
 			'</div>'].join('');
 	};
     // 问答模板
+    // '<div class="askTitleItem J_ask_anim">',
+    //                     '<div class="askTopicOut"><span class="askTopic">{{index+1}}. {{item.ask}}</span></div>',
+    //                 '</div>',
     function createAskTmpl () {
         return [
             '{{ each questions as item index}}',
                 '<div class="ask-list J_ask_item">',
-                    '<div class="askTitleItem J_ask_anim">{{index+1}}. {{item.ask}}</div>',
+                    '<div class="askTitleItem J_ask_anim">',
+                        '{{index+1}}. {{item.ask}}',
+                    '</div>',
                     '<ul class="qustion-list J_ask_list">',
                         '{{ each item.list as ans idx}}',
                             '<li class="qustion-item J_ask_anim J_question_ansItem" data-text="{{ans.t}}">',
@@ -349,15 +361,16 @@ $(window).on('ready', function () {
                         '{{/each}}',
                     '</ul>',
                 '</div>',
-            '{{/each}}'
+            '{{/each}}',
+            '<div class="qustion-foot">',
+                '<div class="dot-list J_question_dot">',
+                    '{{ each questions as item index}}',
+                    '<span class="dot-item J_quest_dotItem" data-idx="{{index}}"></span>',
+                    '{{/each}}',
+                '</div>',
+            '</div>'
         ].join('');
     }
-	// 生成问题模板
-	function createDotTmpl () {
-		return ['{{ each questions as item index}}',
-			'<li class="dot-item J_quest_dotItem" data-idx="{{index}}"><span class="dotIcon"></span></li>',
-			'{{/each}}'].join('');
-	}
 	// 生成结果模板
 	function createResultTmpl () {
 		return ['',
@@ -424,10 +437,7 @@ $(window).on('ready', function () {
         var _html = _render(info);
         $('.J_question_asklist').html(_html);
 
-        var _dottpl = createDotTmpl();
-        var _dotrender = template.compile(_dottpl);
-        var _dothtml = _dotrender(info);
-        CHILDS.questDot.html(_dothtml);
+        CHILDS.questDot = $('.J_question_dot');
 	}
 	// 渲染评定结果页
 	function renderEvaluationResult () {
