@@ -78,6 +78,7 @@ html {
 .page-main {
     width: 3.75rem;
     height: 6.68rem;
+    overflow: hidden;
 }
 /* page-layer */
 .reveal-modal {
@@ -428,6 +429,7 @@ html {
 .page-main {
     width: 7.5rem;
     height: 13.34rem;
+    overflow: hidden;
 }
 /* page-layer */
 .reveal-modal,

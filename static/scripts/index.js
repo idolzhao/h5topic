@@ -122,10 +122,16 @@ $(window).on('ready', function () {
         // 
         var iconlist = $(this).parent().find('.J_ask_icon');
         iconlist.removeClass(STYPE_ICON_RIGHT);
+        iconlist.removeClass(STYPE_ICON_ERR);
 
         var icon = $(this).find('.J_ask_icon');
         var res = checkResults(_data.text);
-        icon.addClass(STYPE_ICON_RIGHT);
+        if(res) {
+            icon.addClass(STYPE_ICON_RIGHT);
+        }
+        else {
+            icon.addClass(STYPE_ICON_ERR);
+        }
         // 
         var timer = setTimeout(function () {
             var checkIsAns = checkAllIssue();
@@ -482,7 +488,7 @@ $(window).on('ready', function () {
     // 检查结果
     function checkResults(res) {
         var quest = CHILD_CONFIG.questions[userInfo.area];
-        if(quest[userInfo.issueNum] == res) {
+        if(quest[userInfo.issueNum].ans == res) {
             return true;
         }
         return false;
@@ -493,7 +499,7 @@ $(window).on('ready', function () {
 		var nums = ques.length;
 		var res = 0;
 		for (var i = 0; i<nums; i++) {
-			var isAns = userInfo.question[i+1];
+			var isAns = userInfo.question[i];
 			if(isAns == ques[i].ans) {
 				res += 1;
 			}
