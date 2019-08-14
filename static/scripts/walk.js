@@ -52,6 +52,7 @@
             'static/images/anmi_girl_2.png',
             'static/images/anmi_girl_3.png',
             'static/images/anmi_girl_4.png',
+            'static/images/billboard_title.png',
             'static/images/billboard_scenic.png',
             'static/images/billboard_family.png',
             'static/images/billboard_subway.png',
@@ -173,13 +174,12 @@
 
         var cloudEndX = -400, cloudEndY = -300;
         var ballEndX = -400, ballEndY = -300;
-
         // 名牌
         var bandlist = [
-            {type: 'school'},
-            {type: 'family'},
-            {type: 'scenic'},
-            {type: 'subway'}
+            {type: 'school', point:[211,265, 403,154, 735,154, 735,435, 570,435, 430,512, 211,385]},
+            {type: 'family', point:[18,375, 211,265, 211,385, 400,493, 400,667, 207,786, 18,683]},
+            {type: 'scenic', point:[546,454, 750,454, 750,960, 546,770]},
+            {type: 'subway', point:[184,956, 334,874, 495,972, 515,1118, 280,1248, 184,1192]}
         ];
 
         function setupMain () {
@@ -209,6 +209,15 @@
             spriteBox.redflag = new PIXI.extras.AnimatedSprite.fromImages(flag_arr);
             spriteBox.redflag.animationSpeed = -0.04;
             spriteBox.redflag.play();
+            // 区域
+            for(var p=0; p<bandlist.length; p++) {
+                var zone = bandlist[p];
+                var poly = createTransparentPolygon(zone.point);
+                params.rectBindEvent(poly, zone.type);
+                spriteBox['zone_'+zone.type] = poly;
+            }
+            // 选择场景
+            spriteBox.band_title = new PIXI.Sprite(PIXI.loader.resources['static/images/billboard_title.png'].texture);
             // 名牌
             for(var n=0; n<bandlist.length; n++) {
                 var item = bandlist[n];
@@ -247,6 +256,7 @@
             }
             spriteBox.redflag.position.set(431, 57);
             // 
+            spriteBox.band_title.position.set(230, -50);
             spriteBox.band_school.position.set(670, 290);
             spriteBox.band_family.position.set(110, 406);
             spriteBox.band_scenic.position.set(706, 613);
