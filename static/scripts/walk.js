@@ -34,6 +34,7 @@
         wrap.append(renderer.view);
         // 
         PIXI.loader.add([
+            'static/audio/JCM_JM_Vasco.mp3',
             'static/images/anim_cloud_1.png',
             'static/images/anim_cloud_2.png',
             'static/images/anim_flag_1.png',
@@ -178,7 +179,7 @@
         var bandlist = [
             {type: 'school', point:[211,265, 403,154, 735,154, 735,435, 570,435, 430,512, 211,385]},
             {type: 'family', point:[18,375, 211,265, 211,385, 400,493, 400,667, 207,786, 18,683]},
-            {type: 'scenic', point:[546,454, 750,454, 750,960, 546,770]},
+            {type: 'scenic', point:[546,454, 750,454, 750,960, 546,960, 488,667]},
             {type: 'subway', point:[184,956, 334,874, 495,972, 515,1118, 280,1248, 184,1192]}
         ];
 

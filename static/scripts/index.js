@@ -8,6 +8,7 @@ var STYPE_PAGE_SCREEN = 'page-screen-';
 var STYLE_ANIM_TOP100 = 'page-enter-top-100';
 var STYLE_ANIM_BOT0 = 'page-enter-bottom-0';
 var STYPE_ICON_ERR = 'icon-error';
+var STYPE_ICON_FAULT = 'icon-fault';
 var STYPE_ICON_RIGHT = 'icon-correct';
 var STYLE_QUEST_ACTIVE = 'qustion-active';
 var STYLE_DOT_CURRENT = 'dot-current';
@@ -30,6 +31,10 @@ $(window).on('ready', function () {
     CHILDS.mbody = $('body');
     CHILDS.pageCont = $('.J_page_cont');
     CHILDS.pageMusic = $('.J_music_wrap');
+    // 背景音乐
+    CHILDS.audioImg = $('.J_audioImg');
+    CHILDS.audioElem = $('.J_audioMusic');
+    // 
     CHILDS.activityBox = $('#J_activityBox');
     CHILDS.btnStart = $('.J_btn_login');
     CHILDS.inputUser = $('.J_input_user');
@@ -64,25 +69,27 @@ $(window).on('ready', function () {
         }, 25);
     }
     handleLoad();
-	
-    // 背景音乐
-    CHILDS.audioImg = $('.J_audioImg');
-    CHILDS.audioElem = $('.J_audioMusic');
+    // 
     CHILDS.musicIsPlay = false;
-
     CHILDS.audioImg.on('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        if (CHILDS.musicIsPlay) {
-            CHILDS.audioImg.removeClass('rotate');
-            CHILDS.audioElem[0].pause();
-        }
-        else {
-            CHILDS.audioImg.addClass('rotate');
-            CHILDS.audioElem[0].play();
-        }
-        CHILDS.musicIsPlay = !CHILDS.musicIsPlay;
+        playMusic();
     });
+
+    function playMusic () {
+        try {
+            if(CHILDS.musicIsPlay) {
+                CHILDS.audioElem[0].pause();
+                CHILDS.audioImg.removeClass('rotate');
+            }
+            else {
+                CHILDS.audioElem[0].play();
+                CHILDS.audioImg.addClass('rotate');
+            }
+        }catch(e) {}
+        CHILDS.musicIsPlay = !CHILDS.musicIsPlay;
+    }
     // page-login
     // btn-开始冒险
     CHILDS.btnStart.on('click', function (e) {
@@ -122,7 +129,7 @@ $(window).on('ready', function () {
         // 
         var iconlist = $(this).parent().find('.J_ask_icon');
         iconlist.removeClass(STYPE_ICON_RIGHT);
-        iconlist.removeClass(STYPE_ICON_ERR);
+        iconlist.removeClass(STYPE_ICON_FAULT);
 
         var icon = $(this).find('.J_ask_icon');
         var res = checkResults(_data.text);
@@ -130,7 +137,7 @@ $(window).on('ready', function () {
             icon.addClass(STYPE_ICON_RIGHT);
         }
         else {
-            icon.addClass(STYPE_ICON_ERR);
+            icon.addClass(STYPE_ICON_FAULT);
         }
         // 
         var timer = setTimeout(function () {
@@ -216,7 +223,7 @@ $(window).on('ready', function () {
     function pageSwitchTo (num, callback) {
         // console.log('============= page-switch-to= ', num);
         CHILDS.currentPage = num;// 当前页
-
+        // 
         var sty = STYPE_PAGE_SCREEN + '3';
         if(num == 3 || num == 4  || num == 5) {
             if(!CHILDS.pageCont.hasClass(sty)) {
@@ -290,6 +297,8 @@ $(window).on('ready', function () {
         else {
             pageMove(num, callback);
         }
+        // 窄屏
+        patchNarrow();
 	}
     // 页面移动
     function pageMove (num, callback) {
@@ -322,6 +331,18 @@ $(window).on('ready', function () {
         target.on('click', function(data){
             toggleTapClick(type);
         });
+    }
+
+    function patchNarrow () {
+        if(isWideScreen()) {
+            return;
+        }
+        if(CHILDS.currentPage == 2) {
+            setScreen(mainScene.height()+'px');
+        }
+        else {
+            setScreen(0);
+        }
     }
 
     function toggleTapClick (type) {
@@ -441,7 +462,8 @@ $(window).on('ready', function () {
                     '<div class="results-btnwrap clearfix">',
                         '<span class="btnTry J_btn_try">试试其他</span>',
                         '<span class="btnDeny">',
-                            '<img src="static/images/but_fire.png" srcset="static/images/but_fire.png 375w, static/images/but_fire@2x.png 750w" alt=""/>',
+                            '<a href="//sf39.top/Q7nQd1" class="btnFire"><img src="static/images/but_fire.png" ',
+                                'srcset="static/images/but_fire.png 375w, static/images/but_fire@2x.png 750w" alt=""/></a>',
                         '</span>',
                         '<span class="btnTry btnShare J_btn_share">分享</span>',
                     '</div>',
@@ -599,14 +621,23 @@ $(window).on('ready', function () {
         if(isWideScreen()) {
             if(CHILDS.currentPage == 5) {
                 CHILDS.isPatched = true;
-                $('html').css({ 'height': '100%', 'overflow': 'hidden' });
-                $('body').css({ 'height': '100%', 'overflow': 'hidden' });
+                setScreen('100%');
             }
             else if(CHILDS.isPatched) {
                 CHILDS.isPatched = false;
-                $('html').css({ 'height': '', 'overflow': '' });
-                $('body').css({ 'height': '', 'overflow': '' });
+                setScreen(0);
             }
+        }
+    }
+
+    function setScreen (high) {
+        if(high) {
+            $('html').css({ 'height': high, 'overflow': 'hidden' });
+            $('body').css({ 'height': high, 'overflow': 'hidden' });
+        }
+        else {
+            $('html').css({ 'height': '', 'overflow': '' });
+            $('body').css({ 'height': '', 'overflow': '' });
         }
     }
 
