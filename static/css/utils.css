@@ -139,7 +139,7 @@ html {
 .page-question,
 .page-results {
     width: 3.4rem;
-    margin: 0.5rem auto 0;
+    margin: 0.45rem auto 0;
 }
 .qustion-top {
     width: 3.39rem;
@@ -158,11 +158,10 @@ html {
 }
 .qustion-list {
     width: 3.2rem;
-    /*height: 2.6rem;*/
 }
 .qustion-item {
     height: 0.58rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     font-size: 0.4rem;
     line-height: 0.58rem;
 }

@@ -297,8 +297,7 @@ $(window).on('ready', function () {
         else {
             pageMove(num, callback);
         }
-        // 窄屏
-        patchNarrow();
+        
 	}
     // 页面移动
     function pageMove (num, callback) {
@@ -312,7 +311,9 @@ $(window).on('ready', function () {
         var timer = setTimeout(function (){
             prev.removeClass(STYPE_PAGE_CURT).removeClass(STYLE_ANIM_TOP100).css('top', '')
             curt.removeClass(STYLE_ANIM_BOT0);
-
+            // 窄屏
+            patchNarrow();
+            // 
             callback && callback();
         }, 705);
     }
