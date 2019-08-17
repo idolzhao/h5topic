@@ -1,5 +1,7 @@
 <?php
-require_once "jssdk.php";
+header("content-type:text/html;charset=utf-8");
+header("Feature-Policy: autoplay 'self'");
+require_once "./php/jssdk.php";
 $jssdk = new Jssdk();
 $info = $jssdk->getInfo();
 ?>
@@ -26,9 +28,8 @@ $info = $jssdk->getInfo();
     <script src="static/libs/html2canvas.js"></script>
 </head>
 <body>
-    <div class="page-container" id="J_activityBox" data-app-id="<?php echo $info["appId"];?>" 
-        data-timestamp="<?php echo $info["timestamp"];?>" data-nonce-str="<?php echo $info["nonceStr"];?>" 
-        data-signature="<?php echo $info["signature"];?>">
+    <audio id="bg-music" class="audio-music J_audioMusic" src="static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
+    <div class="page-container" id="J_activityBox" data-app-id="appId" data-timestamp="timestamp" data-nonce-str="nonceStr" data-signature="signature">
         <div class="page-cont J_page_cont">
             <div class="page-init J_pages page_0 page-current">
                 <div class="page-load">
@@ -73,7 +74,6 @@ $info = $jssdk->getInfo();
             <div class="page-init J_pages page_5 page-screen-3" id="J_page_shareimg"></div>
             <div class="musicWrap J_music_wrap">
                 <img class="J_audioImg" src="static/images/icon_music.png" srcset="static/images/icon_music.png 375w, static/images/icon_music@2x.png 750w" alt=""/>
-                <audio class="audio-music J_audioMusic" src="static/audio/bgmusic.mp3"></audio>
             </div>
         </div>
         <div class="reveal-modal-cont J_layer_cont">
