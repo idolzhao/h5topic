@@ -177,6 +177,9 @@ $(window).on('ready', function () {
     });
 
     function tapLayer () {
+        if(CHILDS.tostIsShow) {
+            return;
+        }
         if(CHILDS.currentPage == 5) {
             pageSwitchTo(4);
             hideLayer();
@@ -657,22 +660,32 @@ $(window).on('ready', function () {
 
     function shareTost () {
         var tost = $('#J_share_tost');
-        var _top = $('html').height() - tost.height();
-        _top = parseInt(_top * 2 / 5, 10);
-        var _left = $('html').width() - tost.width();
-        _left = parseInt(_left/2);
-        tost.css({
-            'zIndex': '10',
-            'top': _top + 'px',
-            'left': _left + 'px'
-        });
-        tost.animate({ 'opacity' : '1' }, 300).fadeIn(150);
-        var timer = setTimeout(function() {
-            tost.fadeOut(200).css({
-                'opacity': '0',
-                'zIndex': '0'
+        tost.show();
+        
+        var timer1 = setTimeout(function () {
+            var thigh = tost.height();
+            var twide = tost.width();
+            var hhigh = $('html').height();
+            var hwide = $('html').width();
+            var _top = hhigh - thigh;
+            _top = parseInt(_top * 2 / 5, 10);
+            var _left = hwide - twide;
+            _left = parseInt(_left/2);
+            tost.css({
+                'zIndex': '120',
+                'top': _top + 'px',
+                'left': _left + 'px'
             });
-        }, 3000);
+            tost.animate({ 'opacity' : '1' }, 300).fadeIn(150);
+            CHILDS.tostIsShow = true;
+            var timer2 = setTimeout(function() {
+                tost.fadeOut(200).css({
+                    'opacity': '0',
+                    'zIndex': '0'
+                });
+                CHILDS.tostIsShow = false;
+            }, 3000);
+        }, 500);
     }
 
     $.fn.pops = function(){
@@ -701,7 +714,7 @@ $(window).on('ready', function () {
             html2image(element, image, function (data) {
                 // 
                 shareTost();
-                // showLayer({opacity: '0.7'});
+                showLayer({opacity: '0.7'});
                 // console.log('============', data);
                 var timer = setTimeout(function () {
                 //     CHILDS.imgIsShare = true;
