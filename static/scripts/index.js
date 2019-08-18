@@ -672,11 +672,11 @@ $(window).on('ready', function () {
                 // 
                 showLayer({opacity: '0.7'});
                 // console.log('============', data);
-                var timer = setTimeout(function () {
-                    CHILDS.imgIsShare = true;
+                // var timer = setTimeout(function () {
+                //     CHILDS.imgIsShare = true;
                     // 
                     initWxShare();
-                }, 10);
+                // }, 10);
             });
         }
     }
@@ -698,7 +698,7 @@ $(window).on('ready', function () {
     CHILDS.shareData = {
         title: '来测测你的防骗level',
         desc: '生活无法“铤而走险”？这里试试',
-        imgUrl: '',
+        imgUrl: 'http://www.shiyueai.xyz/h5topic/static/images/danger.png',
         link: location.href,
         callback: function(){
         }
