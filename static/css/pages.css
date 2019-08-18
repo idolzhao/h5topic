@@ -178,6 +178,10 @@ audio.audio-music {
     top: 50%;
     left: 50%;
 }
+.tost-wrap {
+    position: absolute;
+    opacity: 0;
+}
 .reveal-modal-bg {
     display: none;
     position: fixed;

@@ -284,7 +284,10 @@ html {
     position: absolute;
     top: -3rem;
     left: -1.8rem;
-    
+}
+.tost-wrap {
+    width: 3.3rem;
+    height: 1rem;
 }
 .sharetips-wrap {
     position: absolute;
@@ -500,6 +503,10 @@ html {
     position: absolute;
     top: -3.5rem;
     left: -3.1rem;
+}
+.tost-wrap {
+    width: 6.6rem;
+    height: 2rem;
 }
 .modalTop {
     position: relative;
