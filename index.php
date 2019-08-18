@@ -89,15 +89,10 @@ $info = $jssdk->getInfo();
             <div class="reveal-modal J_layer_intros"></div>
             <div class="reveal-qrimg J_layer_qrimg">
                 <img id="J_create_img" class="qrcode-img" />
-                <div class="sharetips-wrap">
-                    <img src="static/images/icon_sharetip.png" srcset="static/images/icon_sharetip.png 375w, static/images/icon_sharetip@2x.png 750w" width="100%" height="100%" />
-                    <div class="sharetips-arrow">
-                        <img src="static/images/icon_arrow.png" srcset="static/images/icon_arrow.png 375w, static/images/icon_arrow@2x.png 750w" width="100%" height="100%" />
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="reveal-modal-bg J_layerBg"></div>        
+        <div class="reveal-modal-bg J_layerBg"></div>
+        <div class="tost-wrap" id="J_share_tost"><img src="static/images/sharetost.png" srcset="static/images/sharetost.png 375w, static/images/sharetost@2x.png 750w" width="100%" height="100%" /></div>
     </div>
     <script src="static/scripts/config.js"></script>
     <script src="static/scripts/walk.js"></script>

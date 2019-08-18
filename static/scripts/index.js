@@ -647,6 +647,34 @@ $(window).on('ready', function () {
         }
     }
 
+    function checkplat () {
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+            return true;
+        }
+        return false;
+    }
+
+    function shareTost () {
+        var tost = $('#J_share_tost');
+        var _top = $('html').height() - tost.height();
+        _top = parseInt(_top * 2 / 5, 10);
+        var _left = $('html').width() - tost.width();
+        _left = parseInt(_left/2);
+        tost.css({
+            'zIndex': '10',
+            'top': _top + 'px',
+            'left': _left + 'px'
+        });
+        tost.animate({ 'opacity' : '1' }, 300).fadeIn(150);
+        var timer = setTimeout(function() {
+            tost.fadeOut(200).css({
+                'opacity': '0',
+                'zIndex': '0'
+            });
+        }, 3000);
+    }
+
     $.fn.pops = function(){
         var element = $(this);
         element.delegate('.J_btn_changePage', 'click', function(e){
@@ -661,10 +689,10 @@ $(window).on('ready', function () {
         return window.innerWidth > 750;
     }
     function createImage () {
-        if(CHILDS.imgIsShare) {
-            showLayer({opacity: '0.7'});
-        }
-        else {
+        // if(CHILDS.imgIsShare) {
+        //     showLayer({opacity: '0.7'});
+        // }
+        // else {
             //要转换为图片的dom对象
             var element = CHILDS.shareImgWrap[0];
             //要显示图片的img标签
@@ -672,22 +700,23 @@ $(window).on('ready', function () {
             //调用html2image方法
             html2image(element, image, function (data) {
                 // 
-                showLayer({opacity: '0.7'});
+                shareTost();
+                // showLayer({opacity: '0.7'});
                 // console.log('============', data);
-                // var timer = setTimeout(function () {
+                var timer = setTimeout(function () {
                 //     CHILDS.imgIsShare = true;
                     // 
                     initWxShare();
-                // }, 10);
+                }, 10);
             });
-        }
+        // }
     }
     function html2image(source, image, callback) {
         html2canvas(source, {
             onrendered: function(canvas) {
                 var imageData = canvas.toDataURL(1);
                 image.src = imageData;
-                // CHILDS.shareData.imgUrl = imageData;
+                CHILDS.shareData.imgUrl = imageData;
                 if(callback) {
                     callback(imageData);
                 }
@@ -710,7 +739,7 @@ $(window).on('ready', function () {
     function initWxShare () {
         var parms = $('#J_activityBox').data();
         wx.config({
-            debug: true,
+            debug: false,
             appId: parms.appId,
             timestamp: parms.timestamp,
             nonceStr: parms.nonceStr,
