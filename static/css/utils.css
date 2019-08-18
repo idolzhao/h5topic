@@ -27,7 +27,8 @@ html {
     line-height: 0.3rem;
     text-align: center;
 }
-.musicWrap img {
+.icon-music {
+    display: inline-block;
     width: 0.24rem;
     height: 0.24rem;
 }
@@ -111,7 +112,7 @@ html {
     height: 0.43rem;
     line-height: 0.43rem;
 }
-.modal-box .modalMore {
+.modal-box .modalStone {
     width: 0.76rem;
     height: 0.47rem;
 }
@@ -123,7 +124,8 @@ html {
     margin-bottom: 0.15rem;
     font-size: 0.12rem;
 }
-.starWrap img {
+.starWrap .icon-star {
+    display: inline-block;
     width: 0.2rem;
     height: 0.2rem;
     margin-top: -0.02rem;
@@ -134,7 +136,13 @@ html {
 .btnSwitch {
     width: 1.3rem;
 }
-
+.modalTitle,
+.modalStone,
+.qustion-item,
+.btnTry {
+    background-image: url("../images/sprite_stone.png");
+    background-repeat: no-repeat;
+}
 /* page-questions */
 .page-question,
 .page-results {
@@ -280,27 +288,69 @@ html {
     top: -2rem;
     right: -0.65rem;
 }
-
+.icon-music {
+    background-position: 0 -2.6rem;
+}
 .icon-correct {
-    background: url("../images/icon_correct.png") no-repeat center center;
+    background-position: 0 -0.7rem;
 }
 .icon-fault {
-    background: url("../images/icon_fault.png") no-repeat center center;
+    background-position: 0 0;
 }
 .icon-error {
-    background: url("../images/icon_error.png") no-repeat center center;
+    background-position: 0 -1.4rem;
+}
+.icon-star {
+    background-position: 0 -2.1rem;
+}
+
+.modal-stone-school {
+    background-position: 0 -1.3rem;
+}
+.modal-stone-family {
+    background-position: 0 0;
+}
+.modal-stone-scenic {
+    background-position: 0 -0.65rem;
+}
+.modal-stone-subway {
+    background-position: 0 -1.95rem;
 }
 .modal-title-school {
-    background-image: url("../images/icon_title_school.png");
+    background-position: -0.9rem -1.3rem;
 }
 .modal-title-family {
-    background-image: url("../images/icon_title_family.png");
+    background-position: -0.9rem 0;
 }
 .modal-title-scenic {
-    background-image: url("../images/icon_title_scenic.png");
+    background-position: -0.9rem -0.65rem;
 }
 .modal-title-subway {
-    background-image: url("../images/icon_title_subway.png");
+    background-position: -0.9rem -1.95rem;
+}
+.qustion-school li.qustion-item {
+    background-position: -3.8rem -1.3rem;
+}
+.qustion-family li.qustion-item {
+    background-position: -3.8rem 0;
+}
+.qustion-subway li.qustion-item {
+    background-position: -3.8rem -1.95rem;
+}
+.qustion-scenic li.qustion-item {
+    background-position: -3.8rem -0.65rem;
+}
+.result-school .btnTry {
+    background-position: -2.65rem -1.3rem;
+}
+.result-family .btnTry {
+    background-position: -2.65rem 0;
+}
+.result-subway .btnTry {
+    background-position: -2.65rem -1.95rem;
+}
+.result-scenic .btnTry {
+    background-position: -2.65rem -0.65rem;
 }
 .qustion-school .qustion-bg {
     background-image: url("../images/topic_school.png");
@@ -313,18 +363,6 @@ html {
 }
 .qustion-scenic .qustion-bg {
     background-image: url("../images/topic_scenic.png");
-}
-.qustion-school li.qustion-item {
-    background-image: url("../images/item_quest_school.png");
-}
-.qustion-family li.qustion-item {
-    background-image: url("../images/item_quest_family.png");
-}
-.qustion-subway li.qustion-item {
-    background-image: url("../images/item_quest_subway.png");
-}
-.qustion-scenic li.qustion-item {
-    background-image: url("../images/item_quest_scenic.png");
 }
 .result-school .results-main-bg {
     background-image: url("../images/result_main_school.png");
@@ -350,18 +388,7 @@ html {
 .result-scenic .results-subs-bg {
     background-image: url("../images/result_subs_scenic.png");
 }
-.result-school .btnTry {
-    background-image: url("../images/but_school.png");
-}
-.result-family .btnTry {
-    background-image: url("../images/but_family.png");
-}
-.result-subway .btnTry {
-    background-image: url("../images/but_subway.png");
-}
-.result-scenic .btnTry {
-    background-image: url("../images/but_scenic.png");
-}
+
 }
 @media screen and (min-width: 480px) {
 .page-container .page_0,
@@ -376,9 +403,11 @@ html {
     line-height: 0.6rem;
     text-align: center;
 }
-.musicWrap img {
+.icon-music {
+    display: inline-block;
     width: 0.48rem;
     height: 0.48rem;
+    margin-top: 0.06rem;
 }
 .page-cont .page-init {
     width: 7.5rem;
@@ -467,7 +496,7 @@ html {
     line-height: 0.86rem;
     font-size: 0.34rem;
 }
-.modal-box .modalMore {
+.modal-box .modalStone {
     width: 1.52rem;
     height: 0.94rem;
 }
@@ -479,7 +508,8 @@ html {
     margin-bottom: 0.15rem;
     font-size: 0.14rem;
 }
-.starWrap img {
+.starWrap .icon-star {
+    display: inline-block;
     width: 0.4rem;
     height: 0.4rem;
     margin-top: -0.06rem;
@@ -489,6 +519,13 @@ html {
 }
 .btnSwitch {
     width: 1.8rem;
+}
+.modalTitle,
+.modalStone,
+.qustion-item,
+.btnTry {
+    background-image: url("../images/sprite_stone2x.png");
+    background-repeat: no-repeat;
 }
 /* page-questions */
 .page-question,
@@ -640,27 +677,68 @@ html {
     top: -2rem;
     right: -1.7rem;
 }
-
+.icon-music {
+    background-position: -0.4rem -2.6rem;
+}
 .icon-correct {
-    background: url("../images/icon_correct@2x.png") no-repeat center center;
+    background-position: -0.4rem -0.7rem;
 }
 .icon-fault {
-    background: url("../images/icon_fault@2x.png") no-repeat center center;
+    background-position: -0.4rem 0;
 }
 .icon-error {
-    background: url("../images/icon_error@2x.png") no-repeat center center;
+    background-position: -0.4rem -1.4rem;
+}
+.icon-star {
+    background-position: -0.4rem -2.1rem;
+}
+.modal-stone-school {
+    background-position: 0 -2.5rem;
+}
+.modal-stone-family {
+    background-position: 0 0;
+}
+.modal-stone-scenic {
+    background-position: 0 -1.25rem;
+}
+.modal-stone-subway {
+    background-position: 0 -3.75rem;
 }
 .modal-title-school {
-    background-image: url("../images/icon_title_school@2x.png");
+    background-position: -1.7rem -2.5rem;
 }
 .modal-title-family {
-    background-image: url("../images/icon_title_family@2x.png");
+    background-position: -1.7rem 0;
 }
 .modal-title-scenic {
-    background-image: url("../images/icon_title_scenic@2x.png");
+    background-position: -1.7rem -1.25rem;
 }
 .modal-title-subway {
-    background-image: url("../images/icon_title_subway@2x.png");
+    background-position: -1.7rem -3.75rem;
+}
+.qustion-school li.qustion-item {
+    background-position: -7.5rem -2.5rem;
+}
+.qustion-family li.qustion-item {
+    background-position: -7.5rem 0;
+}
+.qustion-subway li.qustion-item {
+    background-position: -7.5rem -3.75rem;
+}
+.qustion-scenic li.qustion-item {
+    background-position: -7.5rem -1.25rem;
+}
+.result-school .btnTry {
+    background-position: -5.2rem -2.5rem;
+}
+.result-family .btnTry {
+    background-position: -5.2rem 0;
+}
+.result-subway .btnTry {
+    background-position: -5.2rem -3.75rem;
+}
+.result-scenic .btnTry {
+    background-position: -5.2rem -1.25rem;
 }
 .qustion-school .qustion-bg {
     background-image: url("../images/topic_school@2x.png");
@@ -673,18 +751,6 @@ html {
 }
 .qustion-scenic .qustion-bg {
     background-image: url("../images/topic_scenic@2x.png");
-}
-.qustion-school li.qustion-item {
-    background-image: url("../images/item_quest_school@2x.png");
-}
-.qustion-family li.qustion-item {
-    background-image: url("../images/item_quest_family@2x.png");
-}
-.qustion-subway li.qustion-item {
-    background-image: url("../images/item_quest_subway@2x.png");
-}
-.qustion-scenic li.qustion-item {
-    background-image: url("../images/item_quest_scenic@2x.png");
 }
 .result-school .results-main-bg {
     background-image: url("../images/result_main_school@2x.png");
@@ -709,18 +775,6 @@ html {
 }
 .result-scenic .results-subs-bg {
     background-image: url("../images/result_subs_scenic@2x.png");
-}
-.result-school .btnTry {
-    background-image: url("../images/but_school@2x.png");
-}
-.result-family .btnTry {
-    background-image: url("../images/but_family@2x.png");
-}
-.result-subway .btnTry {
-    background-image: url("../images/but_subway@2x.png");
-}
-.result-scenic .btnTry {
-    background-image: url("../images/but_scenic@2x.png");
 }
 }
 body {

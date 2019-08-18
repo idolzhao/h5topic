@@ -33,6 +33,14 @@ audio.audio-music {
     -moz-animation-play-state: paused;
     -o-animation-play-state: paused
 }
+.icon-music,
+.icon-error,
+.icon-correct,
+.icon-fault,
+.icon-star {
+    background-image: url("../images/icon_sprite.png");
+    background-repeat: no-repeat;
+}
 
 .page-init {
     display: none;
@@ -219,7 +227,6 @@ audio.audio-music {
     text-align: center;
     font-family: "SourceHanSansCN-Medium";
     font-size: 0.18rem;
-    background-size: contain;
     color: #666666;
 }
 .modalMore {
@@ -227,9 +234,8 @@ audio.audio-music {
     top: 0;
     right: 0;
 }
-.modalMore img {
-    width: 100%;
-    height: 100%;
+.modalMore .modalStone {
+    display: inline-block;
 }
 .modalSectionTitle {
     margin-bottom: 0.1rem;
@@ -341,10 +347,6 @@ audio.audio-music {
 }
 .qustion-item {
     position: relative;
-
-    background-size: contain;
-    background-repeat: no-repeat;
-
     opacity: 0;
     transform: translateY(25px);
     transition: all .4s;
@@ -484,8 +486,6 @@ audio.audio-music {
 .btnTry {
     text-align: center;
     font-family: "SourceHanSansCN-Medium";
-    background-size: contain;
-    background-repeat: no-repeat;
     color: #333333;
 }
 .results-btnwrap span.btnShare,

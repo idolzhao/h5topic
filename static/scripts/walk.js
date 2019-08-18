@@ -16,6 +16,7 @@
     var sceneBox = new PIXI.Container();
     // main
     var mainBox = new PIXI.Container();
+    var pubpath = window.CHILDS.publicPath || 'static/';
     // 
     function animLoadWalk (params, callback) {
         params = params || {};
@@ -34,30 +35,30 @@
         wrap.append(renderer.view);
         // 
         PIXI.loader.add([
-            'static/audio/JCM_JM_Vasco.mp3',
-            'static/images/anim_cloud_1.png',
-            'static/images/anim_cloud_2.png',
-            'static/images/anim_flag_1.png',
-            'static/images/anim_flag_2.png',
-            'static/images/anim_flag_3.png',
-            'static/images/anim_ball_1.png',
-            'static/images/anim_ball_2.png',
-            'static/images/anim_ball_3.png',
-            'static/images/anim_ball_4.png',
-            'static/images/main_scene.png',
-            'static/images/anmi_archi.png',
-            'static/images/anmi_login.png',
-            'static/images/anmi_shadow_1.png',
-            'static/images/anmi_shadow_2.png',
-            'static/images/anmi_girl_1.png',
-            'static/images/anmi_girl_2.png',
-            'static/images/anmi_girl_3.png',
-            'static/images/anmi_girl_4.png',
-            'static/images/billboard_title.png',
-            'static/images/billboard_scenic.png',
-            'static/images/billboard_family.png',
-            'static/images/billboard_subway.png',
-            'static/images/billboard_school.png'
+            pubpath+'audio/JCM_JM_Vasco.mp3',
+            pubpath+'images/anim_cloud_1.png',
+            pubpath+'images/anim_cloud_2.png',
+            pubpath+'images/anim_flag_1.png',
+            pubpath+'images/anim_flag_2.png',
+            pubpath+'images/anim_flag_3.png',
+            pubpath+'images/anim_ball_1.png',
+            pubpath+'images/anim_ball_2.png',
+            pubpath+'images/anim_ball_3.png',
+            pubpath+'images/anim_ball_4.png',
+            pubpath+'images/main_scene.png',
+            pubpath+'images/anmi_archi.png',
+            pubpath+'images/anmi_login.png',
+            pubpath+'images/anmi_shadow_1.png',
+            pubpath+'images/anmi_shadow_2.png',
+            pubpath+'images/anmi_girl_1.png',
+            pubpath+'images/anmi_girl_2.png',
+            pubpath+'images/anmi_girl_3.png',
+            pubpath+'images/anmi_girl_4.png',
+            pubpath+'images/billboard_title.png',
+            pubpath+'images/billboard_scenic.png',
+            pubpath+'images/billboard_family.png',
+            pubpath+'images/billboard_subway.png',
+            pubpath+'images/billboard_school.png'
         ]).on("progress", function(target, resource){
             
         }).load(dowalk);
@@ -66,7 +67,7 @@
             var girlSprits = {};
             var girl_arr = [];
             for(let i=1;i<5;i++){
-                girl_arr.push('static/images/anmi_girl_'+i+'.png');
+                girl_arr.push(pubpath+'images/anmi_girl_'+i+'.png');
             }
             var girl = new PIXI.extras.AnimatedSprite.fromImages(girl_arr);
             girl.animationSpeed = -0.06;
@@ -103,13 +104,13 @@
 
         function setup () {
             // BG
-            var bg = new PIXI.Sprite(PIXI.loader.resources['static/images/anmi_login.png'].texture);
+            var bg = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/anmi_login.png'].texture);
             bg.position.set(0,0);
             spriteBox.bg = bg;
 
             var shadow_arr = [];
             for(let i=1;i<3;i++){
-                shadow_arr.push('static/images/anmi_shadow_'+i+'.png');
+                shadow_arr.push(pubpath+'images/anmi_shadow_'+i+'.png');
             }
             spriteBox.shadow = new PIXI.extras.AnimatedSprite.fromImages(shadow_arr);
             spriteBox.shadow.animationSpeed = -0.05;
@@ -117,14 +118,14 @@
 
             var girl_arr = [];
             for(let i=1;i<5;i++){
-                girl_arr.push('static/images/anmi_girl_'+i+'.png');
+                girl_arr.push(pubpath+'images/anmi_girl_'+i+'.png');
             }
             spriteBox.girl = new PIXI.extras.AnimatedSprite.fromImages(girl_arr);
             spriteBox.girl.animationSpeed = -0.06;
             spriteBox.girl.play();
             spriteBox.girl.scale.set(1.1, 1.1);
 
-            var architecture = new PIXI.Sprite(PIXI.loader.resources['static/images/anmi_archi.png'].texture);
+            var architecture = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/anmi_archi.png'].texture);
             spriteBox.architecture = architecture;
 
             for(let key in spriteBox){
@@ -186,26 +187,26 @@
         function setupMain () {
             // cloud
             for(var m=1; m<3; m++){
-                spriteBox['cloud_'+m] = new PIXI.Sprite(PIXI.loader.resources['static/images/anim_cloud_'+m+'.png'].texture);
+                spriteBox['cloud_'+m] = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/anim_cloud_'+m+'.png'].texture);
                 var speed = randomCloudSpeed();
                 spriteBox['cloud_'+m].vx = speed.vx;
                 spriteBox['cloud_'+m].vy = speed.vy;
             }
             // ball
             for(var i=1; i<5; i++){
-                spriteBox['balloon_'+i] = new PIXI.Sprite(PIXI.loader.resources['static/images/anim_ball_'+i+'.png'].texture);
+                spriteBox['balloon_'+i] = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/anim_ball_'+i+'.png'].texture);
                 var speed = randomBallSpeed();
                 spriteBox['balloon_'+i].vx = speed.vx;
                 spriteBox['balloon_'+i].vy = speed.vy;
             }
             // 背景
-            var bg = new PIXI.Sprite(PIXI.loader.resources['static/images/main_scene.png'].texture);
+            var bg = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/main_scene.png'].texture);
             bg.position.set(0,0);
             spriteBox.bg = bg;
             // redflag
             var flag_arr = [];
             for(let i=1;i<4;i++){
-                flag_arr.push('static/images/anim_flag_'+i+'.png');
+                flag_arr.push(pubpath+'images/anim_flag_'+i+'.png');
             }
             spriteBox.redflag = new PIXI.extras.AnimatedSprite.fromImages(flag_arr);
             spriteBox.redflag.animationSpeed = -0.04;
@@ -218,12 +219,12 @@
                 spriteBox['zone_'+zone.type] = poly;
             }
             // 选择场景
-            spriteBox.band_title = new PIXI.Sprite(PIXI.loader.resources['static/images/billboard_title.png'].texture);
+            spriteBox.band_title = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/billboard_title.png'].texture);
             // 名牌
             for(var n=0; n<bandlist.length; n++) {
                 var item = bandlist[n];
                 var container = new PIXI.Container();
-                var board = new PIXI.Sprite(PIXI.loader.resources['static/images/billboard_'+ item.type +'.png'].texture);
+                var board = new PIXI.Sprite(PIXI.loader.resources[pubpath+'images/billboard_'+ item.type +'.png'].texture);
                 board.position.set(0, 0);
                 board.anchor.set(0.5, 0.5);
                 board.scale.set(1, 1);

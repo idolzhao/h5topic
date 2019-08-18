@@ -2,6 +2,7 @@
 * child.
 * */
 var CHILDS = window.CHILDS || {};
+var pubpath = window.CHILDS.publicPath || 'static/';
 var STYLE_SELECTED = 'selected';
 var STYPE_PAGE_CURT = 'page-current';
 var STYPE_PAGE_SCREEN = 'page-screen-';
@@ -362,7 +363,7 @@ $(window).on('ready', function () {
         if(info.difficulty.value && starDoms.length) {
             var strs = '';
             for(var i=0; i<info.difficulty.value; i++) {
-                strs += '<img src="static/images/icon_star.png" srcset="static/images/icon_star.png 375w, static/images/icon_star@2x.png 750w" alt="" />';
+                strs += '<span class="icon-star"></span>'
             }
             starDoms.html(strs);
         }
@@ -377,10 +378,10 @@ $(window).on('ready', function () {
 			'<div class="modal-box">',
 			'<div class="modalTop">',
 			'<div class="modalTitle modal-title-{{type}}">{{title}}</div>',
-			'<div class="modalMore"><img src="static/images/icon_pop_adorn_{{type}}.png" srcset="static/images/icon_pop_adorn_{{type}}.png 375w, static/images/icon_pop_adorn_{{type}}@2x.png 750w" alt="" /></div>',
+			'<div class="modalMore"><span class="modalStone modal-stone-{{type}}""></span></div>',
 			'</div>',
 			'<div class="modalMid">',
-			'<img src="static/images/layer_{{type}}.png" srcset="static/images/layer_{{type}}.png 375w,static/images/layer_{{type}}@2x.png 750w" alt="" />',
+			'<img src="'+pubpath+'images/layer_{{type}}.png" srcset="'+pubpath+'images/layer_{{type}}.png 375w,'+pubpath+'images/layer_{{type}}@2x.png 750w" alt="" />',
 			'</div>',
 			'<div class="modalBot">',
 			'<ul class="detailList">',
@@ -463,8 +464,8 @@ $(window).on('ready', function () {
                     '<div class="results-btnwrap clearfix">',
                         '<span class="btnTry J_btn_try">试试其他</span>',
                         '<span class="btnDeny">',
-                            '<a href="//sf39.top/Q7nQd1" class="btnFire"><img src="static/images/but_fire.png" ',
-                                'srcset="static/images/but_fire.png 375w, static/images/but_fire@2x.png 750w" alt=""/></a>',
+                            '<a href="//sf39.top/Q7nQd1" class="btnFire"><img src="'+pubpath+'images/but_fire.png" ',
+                                'srcset="'+pubpath+'images/but_fire.png 375w, '+pubpath+'images/but_fire@2x.png 750w" alt=""/></a>',
                         '</span>',
                         '<span class="btnTry btnShare J_btn_share">分享</span>',
                     '</div>',
@@ -475,9 +476,9 @@ $(window).on('ready', function () {
 
     function shareHtml () {
         return ['<div class="results-qrcodewrap clearfix">',
-            '<span class="qrimg-wrap"><img src="static/images/sharechild.jpg" width="100%" height="100%" /></span>',
+            '<span class="qrimg-wrap"><img src="'+pubpath+'images/sharechild.jpg" width="100%" height="100%" /></span>',
             '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
-            '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext.png 375w, static/images/movietext@2x.png 750w" alt=""/></span>',
+            '<span class="movie-banner"><img src="'+pubpath+'images/movietext.png" srcset="'+pubpath+'images/movietext.png 375w, '+pubpath+'images/movietext@2x.png 750w" alt=""/></span>',
         '</div>'].join('');
     }
 	// 渲染问题页
