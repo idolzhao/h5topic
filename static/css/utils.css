@@ -863,15 +863,6 @@ a {
     text-decoration: none
 }
 
-a:focus,a:visited,a:active {
-    color: #333;
-    text-decoration: none
-}
-
-a.c-green,a.c-green:focus,a.c-green:visited,a.c-green:active {
-    color: #20bc22
-}
-
 .clearfix:before,.clearfix:after {
     content: " ";
     display: table;

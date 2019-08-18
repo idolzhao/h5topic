@@ -174,7 +174,11 @@ $(window).on('ready', function () {
         CHILDS.pageShare.find('.J_share_wrap').html(html);
         CHILDS.shareImgWrap = $('#J_page_shareimg .J_result_item');
         CHILDS.shareImgWrap.addClass('result-outer');
-        pageSwitchTo(5, createImage);
+        pageSwitchTo(5, function () {
+            var timer = setTimeout(function () {
+                createImage();
+            }, 100);
+        });
     });
 
     function tapLayer () {
