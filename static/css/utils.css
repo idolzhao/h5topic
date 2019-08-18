@@ -802,17 +802,22 @@ html {
 .result-scenic .results-main-bg {
     background-image: url("../images/result_main_scenic@2x.png");
 }
+.results-subs-bg {
+    background-image: url("../images/result_subs2x.png");
+    background-repeat: no-repeat;
+    background-size: 6.8rem 21.92rem;
+}
 .result-school .results-subs-bg {
-    background-image: url("../images/result_subs_school@2x.png");
+    background-position: 0 -11rem;
 }
 .result-family .results-subs-bg {
-    background-image: url("../images/result_subs_family@2x.png");
+    background-position: 0 0;
 }
 .result-subway .results-subs-bg {
-    background-image: url("../images/result_subs_subway@2x.png");
+    background-position: 0 -16.5rem;
 }
 .result-scenic .results-subs-bg {
-    background-image: url("../images/result_subs_scenic@2x.png");
+    background-position: 0 -5.5rem;
 }
 .modal-layer-school {
     background: url("../images/layer_school@2x.png") no-repeat 0 0;

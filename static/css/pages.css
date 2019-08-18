@@ -39,8 +39,8 @@ audio.audio-music {
 .icon-fault,
 .icon-star {
     background-image: url("../images/icon_sprite.png");
+    background-size: 1rem 3.14rem;
     background-repeat: no-repeat;
-    /*background-color: #ffb15f*/
 }
 
 .page-init {
