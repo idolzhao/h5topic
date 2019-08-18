@@ -700,7 +700,8 @@ $(window).on('ready', function () {
         desc: '生活无法“铤而走险”？这里试试',
         imgUrl: 'http://www.shiyueai.xyz/h5topic/static/images/danger.png',
         link: location.href,
-        callback: function(){
+        success: function(){
+            alert('分享设置成功');
         }
     };
 
