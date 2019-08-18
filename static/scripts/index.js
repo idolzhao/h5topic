@@ -383,7 +383,7 @@ $(window).on('ready', function () {
 			'<div class="modalMore"><span class="modalStone modal-stone-{{type}}""></span></div>',
 			'</div>',
 			'<div class="modalMid">',
-			'<img src="'+pubpath+'images/layer_{{type}}.png" srcset="'+pubpath+'images/layer_{{type}}.png 375w,'+pubpath+'images/layer_{{type}}@2x.png 750w" alt="" />',
+                '<div class="modalbanner modal-layer-{{type}}"></div>',
 			'</div>',
 			'<div class="modalBot">',
 			'<ul class="detailList">',
