@@ -696,7 +696,7 @@ $(window).on('ready', function () {
         title: '来测测你的防骗level',
         desc: '生活无法“铤而走险”？这里试试',
         imgUrl: '',
-        link: 'http://byu6990690001.my3w.com/index.html',
+        link: location.href,
         callback: function(){
         }
     };
