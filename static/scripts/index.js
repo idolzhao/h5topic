@@ -69,7 +69,9 @@ $(window).on('ready', function () {
             }
         }, 25);
     }
-    handleLoad();
+    if(CHILDS.loadBox && CHILDS.loadBox.length) {
+        handleLoad();
+    }
     // 
     CHILDS.musicIsPlay = false;
     CHILDS.audioImg.on('click', function(e) {
