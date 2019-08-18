@@ -35,7 +35,7 @@ $info = $jssdk->getInfo();
 <body>
     <div style="display:none;"><img src="//www.shiyueai.xyz/h5topic/static/images/danger.png" alt=""></div>
     <iframe id="iframe-music" width="0" height="0" border="0" style="display: none;" class="audio-iframe" src="http://www.shiyueai.xyz/h5topic/music" allow="autoplay 'src' 'http://www.shiyueai.xyz/'"></iframe>
-    <audio id="bg-music" class="audio-music J_audioMusic" src="h5topic/static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
+    <audio id="bg-music" class="audio-music J_audioMusic" src="static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
     <div class="page-container" id="J_activityBox"  data-app-id="<?php echo $info["appId"];?>" 
         data-timestamp="<?php echo $info["timestamp"];?>" data-nonce-str="<?php echo $info["nonceStr"];?>" 
         data-signature="<?php echo $info["signature"];?>">
