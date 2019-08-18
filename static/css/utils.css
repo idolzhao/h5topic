@@ -107,6 +107,7 @@ html {
     width: 2.9rem;
     height: 1.44rem;
     background-image: url("../images/layer.png");
+    background-size: 13.76rem 1.52rem;
     background-repeat: no-repeat;
 }
 .modal-box .modalTitle {
@@ -143,6 +144,7 @@ html {
 .qustion-item,
 .btnTry {
     background-image: url("../images/sprite_stone.png");
+    background-size: 6.97rem 2.51rem;
     background-repeat: no-repeat;
 }
 /* page-questions */
@@ -374,14 +376,17 @@ html {
 .qustion-bg {
     background-image: url("../images/quest_main.png");
     background-repeat: no-repeat;
+    background-size: 14.21rem 2.56rem;
 }
 .results-main-bg {
     background-image: url("../images/result_main.png");
     background-repeat: no-repeat;
+    background-size: 14.29rem 2.34rem;
 }
 .results-subs-bg {
     background-image: url("../images/result_subs.png");
     background-repeat: no-repeat;
+    background-size: 14.23rem 2.67rem;
 }
 .modal-layer-school,
 .qustion-school .qustion-bg,
