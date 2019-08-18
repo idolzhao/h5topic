@@ -442,7 +442,9 @@ $(window).on('ready', function () {
 		return ['',
 		'<div class="page-results result-{{type}} J_result_item">',
             '<div class="results-content">',
-                '<div class="results-top results-main-bg"></div>',
+                '<div class="results-top results-main-bg">',
+                    '<span class="results-catimg results-code-{{type}}"><img src="'+pubpath+'images/sharechild.jpg" /></span>',
+                '</div>',
                 '<div class="results-mid results-subs-bg">',
                     '<div class="results-wrap">',
                         '<ul class="results-list">',
@@ -478,7 +480,7 @@ $(window).on('ready', function () {
 
     function shareHtml () {
         return ['<div class="results-qrcodewrap clearfix">',
-            '<span class="qrimg-wrap"><img src="'+pubpath+'images/sharechild.jpg" width="100%" height="100%" /></span>',
+            '<span class="qrimg-wrap"><img src="'+pubpath+'images/sharenet.png" width="100%" height="100%" /></span>',
             '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
             '<span class="movie-banner"><img src="'+pubpath+'images/movietext.png" srcset="'+pubpath+'images/movietext.png 375w, '+pubpath+'images/movietext@2x.png 750w" alt=""/></span>',
         '</div>'].join('');

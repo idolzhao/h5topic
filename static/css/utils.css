@@ -206,6 +206,13 @@ html {
     height: 2.68rem;
     margin-bottom: 0.25rem;
 }
+.results-catimg {
+    right: 0.15rem;
+    bottom: 0.2rem;
+    width: 0.54rem;
+    height: 0.54rem;
+    border-width: 0.08rem;
+}
 .results-wrap {
     top: 1.5rem;
 }
@@ -600,7 +607,13 @@ html {
     height: 5.36rem;
     margin-bottom: 0.5rem;
 }
-
+.results-catimg {
+    right: 0.3rem;
+    bottom: 0.45rem;
+    width: 1.28rem;
+    height: 1.28rem;
+    border-width: 0.16rem;
+}
 .results-wrap {
     top: 3rem;
 }

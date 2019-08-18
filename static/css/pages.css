@@ -418,6 +418,32 @@ audio.audio-music {
     position: relative;
     z-index: 10;
 }
+.results-catimg {
+    display: block;
+    position: absolute;
+    z-index: 15;
+    border-style: solid;
+}
+.results-catimg img {
+    width: 100%;
+    height: 100%;
+}
+.page_5 .results-content .results-catimg {
+    display: none;
+}
+.results-code-school {
+    border-color: #80dfe1;
+}
+.results-code-scenic {
+    border-color: #ffe8b1;
+}
+.results-code-family {
+    border-color: #fccad1;
+}
+.results-code-subway {
+    border-color: #c5dffd;
+}
+
 .results-wrap {
     position: absolute;
     z-index: 15;
