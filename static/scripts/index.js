@@ -685,7 +685,7 @@ $(window).on('ready', function () {
             onrendered: function(canvas) {
                 var imageData = canvas.toDataURL(1);
                 image.src = imageData;
-                CHILDS.shareData.imgUrl = imageData;
+                // CHILDS.shareData.imgUrl = imageData;
                 if(callback) {
                     callback(imageData);
                 }
@@ -708,7 +708,7 @@ $(window).on('ready', function () {
     function initWxShare () {
         var parms = $('#J_activityBox').data();
         wx.config({
-            debug: false,
+            debug: true,
             appId: parms.appId,
             timestamp: parms.timestamp,
             nonceStr: parms.nonceStr,
