@@ -15,8 +15,13 @@ $info = $jssdk->getInfo();
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"/>
     <meta name="title" content="来测测你的防骗level">
     <meta name="desc" content="生活无法“铤而走险”？这里试试">
-    <meta name="image" content="//byu6990690001.my3w.com/static/images/danger.png"/>
-    <meta name="imageUrl" content="//byu6990690001.my3w.com/static/images/danger.png"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="来测测你的防骗level">
+    <meta property="og:description" content="生活无法“铤而走险”？这里试试">
+    <meta property="og:image" content="//www.shiyueai.xyz/h5topic/static/images/danger.png">
+    <meta property="og:url" content="//www.shiyueai.xyz/h5topic/">
+    <meta name="image" content="//www.shiyueai.xyz/h5topic/static/images/danger.png"/>
+    <meta name="imageUrl" content="//www.shiyueai.xyz/h5topic/static/images/danger.png"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
@@ -28,8 +33,12 @@ $info = $jssdk->getInfo();
     <script src="static/libs/html2canvas.js"></script>
 </head>
 <body>
-    <audio id="bg-music" class="audio-music J_audioMusic" src="static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
-    <div class="page-container" id="J_activityBox" data-app-id="appId" data-timestamp="timestamp" data-nonce-str="nonceStr" data-signature="signature">
+    <div style="display:none;"><img src="//www.shiyueai.xyz/h5topic/static/images/danger.png" alt=""></div>
+    <iframe id="iframe-music" width="0" height="0" border="0" style="display: none;" class="audio-iframe" src="http://www.shiyueai.xyz/h5topic/music" allow="autoplay 'src' 'http://www.shiyueai.xyz/'"></iframe>
+    <audio id="bg-music" class="audio-music J_audioMusic" src="h5topic/static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
+    <div class="page-container" id="J_activityBox"  data-app-id="<?php echo $info["appId"];?>" 
+        data-timestamp="<?php echo $info["timestamp"];?>" data-nonce-str="<?php echo $info["nonceStr"];?>" 
+        data-signature="<?php echo $info["signature"];?>">
         <div class="page-cont J_page_cont">
             <div class="page-init J_pages page_0 page-current">
                 <div class="page-load">
@@ -73,7 +82,7 @@ $info = $jssdk->getInfo();
             <div class="page-init J_pages page_4" id="J_page_results"></div>
             <div class="page-init J_pages page_5 page-screen-3" id="J_page_shareimg"></div>
             <div class="musicWrap J_music_wrap">
-                <img class="J_audioImg" src="static/images/icon_music.png" srcset="static/images/icon_music.png 375w, static/images/icon_music@2x.png 750w" alt=""/>
+                <span class="icon-music J_audioImg"></span>
             </div>
         </div>
         <div class="reveal-modal-cont J_layer_cont">
