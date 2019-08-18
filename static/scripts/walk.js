@@ -4,6 +4,7 @@
 
 (function () {
     window.CHILDS = window.CHILDS || {};
+    window.CHILDS.publicPath = 'http://m.nieban.online/static/';
     // 
     var animType = "WebGL";
     if(!PIXI.utils.isWebGLSupported()){
