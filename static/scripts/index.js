@@ -174,6 +174,8 @@ $(window).on('ready', function () {
         CHILDS.pageShare.find('.J_share_wrap').html(html);
         CHILDS.shareImgWrap = $('#J_page_shareimg .J_result_item');
         CHILDS.shareImgWrap.addClass('result-outer');
+        CHILDS.shareImgWrap.find('.J_result_qrcode').remove();
+
         pageSwitchTo(5, function () {
             var timer = setTimeout(function () {
                 createImage();
@@ -449,7 +451,7 @@ $(window).on('ready', function () {
 		'<div class="page-results result-{{type}} J_result_item">',
             '<div class="results-content">',
                 '<div class="results-top results-main-bg">',
-                    '<span class="results-catimg results-code-{{type}}"><img src="'+pubpath+'images/sharechild.jpg" /></span>',
+                    '<span class="results-catimg results-code-{{type}} J_result_qrcode"><img src="'+pubpath+'images/sharechild.jpg" /></span>',
                 '</div>',
                 '<div class="results-mid results-subs-bg">',
                     '<div class="results-wrap">',
@@ -486,9 +488,9 @@ $(window).on('ready', function () {
 
     function shareHtml () {
         return ['<div class="results-qrcodewrap clearfix">',
-            '<span class="qrimg-wrap"><img src="'+pubpath+'images/sharenet.png" width="100%" height="100%" /></span>',
+            '<span class="qrimg-wrap"><img src="static/images/sharenet.png" width="100%" height="100%" /></span>',
             '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
-            '<span class="movie-banner"><img src="'+pubpath+'images/movietext.png" srcset="'+pubpath+'images/movietext.png 375w, '+pubpath+'images/movietext@2x.png 750w" alt=""/></span>',
+            '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext.png 375w, static/images/movietext@2x.png 750w" alt=""/></span>',
         '</div>'].join('');
     }
 	// 渲染问题页
@@ -714,32 +716,36 @@ $(window).on('ready', function () {
             //要显示图片的img标签
             var image = $('#J_create_img')[0];
             //调用html2image方法
-            html2image(element, image, function (data) {
-                // 
-                shareTost();
-                showLayer({opacity: '0.7'});
-                // console.log('============', data);
-                var timer = setTimeout(function () {
-                //     CHILDS.imgIsShare = true;
+            html2image(element, image, {
+                width: CHILDS.shareImgWrap.width(),
+                height: CHILDS.shareImgWrap.height(),
+                callback: function (data) {
                     // 
-                    CHILDS.pageShare.find('.J_result_item').hide();
-                    initWxShare();
-                }, 10);
+                    shareTost();
+                    showLayer({opacity: '0.7'});
+                    // console.log('============', data);
+                    var timer = setTimeout(function () {
+                    //     CHILDS.imgIsShare = true;
+                        // 
+                        CHILDS.pageShare.find('.J_result_item').hide();
+                        initWxShare();
+                    }, 10);
+                }
             });
         // }
     }
-    function html2image(source, image, callback) {
+    function html2image(source, image, opt) {
         html2canvas(source, {
             onrendered: function(canvas) {
-                var imageData = canvas.toDataURL(1);
+                var imageData = canvas.toDataURL('image/jpeg');
                 image.src = imageData;
                 CHILDS.shareData.imgUrl = imageData;
-                if(callback) {
-                    callback(imageData);
+                if(opt.callback) {
+                    opt.callback(imageData);
                 }
             },
-            width: 360,
-            height: 600
+            width: opt.width,
+            height: opt.height
         });
     }
     // share.
