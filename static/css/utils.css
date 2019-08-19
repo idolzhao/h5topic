@@ -105,9 +105,9 @@ html {
 }
 .modalbanner {
     width: 2.9rem;
-    height: 1.44rem;
+    height: 1.42rem;
     background-image: url("../images/layer.png");
-    background-size: 13.76rem 1.52rem;
+    background-size: 13.68rem 1.42rem;
     background-repeat: no-repeat;
 }
 .modal-box .modalTitle {
@@ -254,6 +254,7 @@ html {
 .movie-banner {
     width: 1.33rem;
     height: 0.46rem;
+    background-position: 0 -1.99rem;
 }
 .btnTry {
     width: 1.04rem;
@@ -272,6 +273,7 @@ html {
     height: 0.9rem;
     margin-left: -0.33rem;
     margin-top: -0.5rem;
+    background-position: -1.62rem 0;
 }
 .result-outer {
     padding: 0.1rem;
@@ -282,21 +284,21 @@ html {
 }
 .qrcode-img {
     position: absolute;
-    top: -2.8rem;
-    left: -1.8rem;
-    width: 3.6rem;
-    height: 5.8rem;
+    top: -3.2rem;
+    left: -1.65rem;
+    width: 3.3rem;
+    height: 5.5rem;
 }
 .qrcode-close {
-    top: -3.2rem;
-    left: 1.4rem;
-    width: 0.4rem;
-    height: 0.4rem;
+    top: -3.6rem;
+    left: 1.35rem;
+    width: 0.3rem;
+    height: 0.3rem;
 }
 
 .tost-wrap {
-    width: 3.3rem;
-    height: 1rem;
+    width: 2.7rem;
+    height: 0.9rem;
 }
 .sharetips-wrap {
     position: absolute;
@@ -388,17 +390,17 @@ html {
 .qustion-bg {
     background-image: url("../images/quest_main.png");
     background-repeat: no-repeat;
-    background-size: 14.21rem 2.56rem;
+    background-size: 14.19rem 2.47rem;
 }
 .results-main-bg {
     background-image: url("../images/result_main.png");
     background-repeat: no-repeat;
-    background-size: 14.29rem 2.34rem;
+    background-size: 14.19rem 2.34rem;
 }
 .results-subs-bg {
     background-image: url("../images/result_subs.png");
     background-repeat: no-repeat;
-    background-size: 14.23rem 2.67rem;
+    background-size: 14.18rem 2.64rem;
 }
 .modal-layer-school,
 .qustion-school .qustion-bg,
@@ -564,6 +566,7 @@ html {
 .qustion-item,
 .btnTry {
     background-image: url("../images/sprite_stone2x.png");
+    background-size: 13.84rem 4.87rem;
     background-repeat: no-repeat;
 }
 /* page-questions */
@@ -675,6 +678,7 @@ html {
 .movie-banner {
     width: 2.66rem;
     height: 0.92rem;
+    background-position: 0 -2.65rem;
 }
 .btnTry {
     width: 2.08rem;

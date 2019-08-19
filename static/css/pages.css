@@ -521,18 +521,15 @@ audio.audio-music {
 .btnFire {
     position: absolute;
 }
-.btnFire img {
-    width: 100%;
-    height: 100%;
-}
 .qrimg-desc {
     font-family: "SourceHanSansCN-Medium";
     color: #333333;
     font-weight: bold;
 }
 
-.movie-banner img {
-    width: 100%;
-    height: 100%;
+.btnFire,
+.movie-banner {
+    background-image: url("../images/fire_share.png");
+    background-size: 2.66rem 3.57rem;
+    background-repeat: no-repeat;
 }
-

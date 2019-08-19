@@ -483,8 +483,7 @@ $(window).on('ready', function () {
                     '<div class="results-btnwrap clearfix">',
                         '<span class="btnTry J_btn_try">试试其他</span>',
                         '<span class="btnDeny">',
-                            '<a href="' + btnUrlFire + '" class="btnFire"><img src="'+pubpath+'images/but_fire.png" ',
-                                'srcset="'+pubpath+'images/but_fire.png 375w, '+pubpath+'images/but_fire@2x.png 750w" alt=""/></a>',
+                            '<a href="' + btnUrlFire + '" class="btnFire"></a>',
                         '</span>',
                         '<span class="btnTry btnShare J_btn_share">分享</span>',
                     '</div>',
@@ -497,7 +496,7 @@ $(window).on('ready', function () {
         return ['<div class="results-qrcodewrap clearfix">',
             '<span class="qrimg-wrap"><img src="static/images/sharenet.png" width="100%" height="100%" /></span>',
             '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
-            '<span class="movie-banner"><img src="static/images/movietext.png" srcset="static/images/movietext.png 375w, static/images/movietext@2x.png 750w" alt=""/></span>',
+            '<span class="movie-banner"></span>',
         '</div>'].join('');
     }
 	// 渲染问题页
