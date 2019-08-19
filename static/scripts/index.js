@@ -32,6 +32,7 @@ $(window).on('ready', function () {
     CHILDS.mbody = $('body');
     CHILDS.pageCont = $('.J_page_cont');
     CHILDS.pageMusic = $('.J_music_wrap');
+    CHILDS.animLoad = $('.J_load_anim');
     // 背景音乐
     CHILDS.audioImg = $('.J_audioImg');
     CHILDS.audioElem = $('.J_audioMusic');
@@ -96,18 +97,20 @@ $(window).on('ready', function () {
     }
     // page-login
     // btn-开始冒险
-    CHILDS.btnStart.on('click', function (e) {
-    	if(!$(this).hasClass(STYLE_SELECTED)) {
-            loginTips.addClass(STYPE_ICON_ERR);
-            var timer = setTimeout(function () {
-                loginTips.removeClass(STYPE_ICON_ERR);
-                takeFocus();
-            }, 3000);
-    		return ;
-    	}
-    	userInfo.nickname = CHILDS.inputUser.val().trim();
-    	pageSwitchTo(2);
-    });
+    if(CHILDS.btnStart && CHILDS.btnStart.length) {
+        CHILDS.btnStart.on('click', function (e) {
+        	if(!$(this).hasClass(STYLE_SELECTED)) {
+                loginTips.addClass(STYPE_ICON_ERR);
+                var timer = setTimeout(function () {
+                    loginTips.removeClass(STYPE_ICON_ERR);
+                    takeFocus();
+                }, 3000);
+        		return ;
+        	}
+        	userInfo.nickname = CHILDS.inputUser.val().trim();
+        	pageSwitchTo(2);
+        });
+    }
 	// 实时监听手机号码输入框变化
     CHILDS.inputUser.on('input', function(e) {
     	var txt = $(this).val();
@@ -196,11 +199,13 @@ $(window).on('ready', function () {
         CHILDS.qrcodeClose.on('tap', tapLayer);
     }
     // 
-    CHILDS.animLoadWalk({
-        wrap: $('.J_load_anim'),
-        ww: 240,
-        wh: 300
-    });
+    if(CHILDS.animLoad && CHILDS.animLoad.length) {
+        CHILDS.animLoadWalk({
+            wrap: CHILDS.animLoad,
+            ww: 240,
+            wh: 300
+        });
+    }
     // 
     initWin();
     // 
@@ -706,48 +711,33 @@ $(window).on('ready', function () {
     function isWideScreen() {
         return window.innerWidth > 750;
     }
+
     function createImage () {
-        // if(CHILDS.imgIsShare) {
-        //     showLayer({opacity: '0.7'});
-        // }
-        // else {
-            //要转换为图片的dom对象
-            var element = CHILDS.shareImgWrap[0];
-            //要显示图片的img标签
-            var image = $('#J_create_img')[0];
-            //调用html2image方法
-            html2image(element, image, {
-                width: CHILDS.shareImgWrap.width(),
-                height: CHILDS.shareImgWrap.height(),
-                callback: function (data) {
-                    // 
-                    shareTost();
-                    showLayer({opacity: '0.7'});
-                    // console.log('============', data);
-                    var timer = setTimeout(function () {
-                    //     CHILDS.imgIsShare = true;
-                        // 
-                        CHILDS.pageShare.find('.J_result_item').hide();
-                        initWxShare();
-                    }, 10);
-                }
-            });
-        // }
-    }
-    function html2image(source, image, opt) {
-        html2canvas(source, {
-            onrendered: function(canvas) {
-                var imageData = canvas.toDataURL('image/jpeg');
-                image.src = imageData;
-                CHILDS.shareData.imgUrl = imageData;
-                if(opt.callback) {
-                    opt.callback(imageData);
-                }
-            },
-            width: opt.width,
-            height: opt.height
+        var dom = $('#J_page_shareimg .J_result_item');
+        var w = dom.width(), h = dom.height();
+        html2canvas(dom[0], {
+            width: w,
+            height: h,
+            dpi: window.devicePixelRatio
+        }).then(function (canvas) {
+            var dataUrl = canvas.toDataURL("image/png", 1.0);
+            insertImage(dataUrl);
         });
     }
+
+    function insertImage (imgUrl) {
+        var newImg = $('#J_create_img')[0];
+        newImg.src = imgUrl;
+        CHILDS.shareData.imgUrl = imgUrl;
+        // 
+        shareTost();
+        showLayer({opacity: '0.7'});
+        var timer = setTimeout(function () {
+            CHILDS.shareImgWrap.empty();
+            initWxShare();
+        }, 10);
+    }
+
     // share.
     CHILDS.shareData = {
         title: '来测测你的防骗level',
