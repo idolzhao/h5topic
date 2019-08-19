@@ -14,6 +14,7 @@ var STYPE_ICON_RIGHT = 'icon-correct';
 var STYLE_QUEST_ACTIVE = 'qustion-active';
 var STYLE_DOT_CURRENT = 'dot-current';
 var STYLE_ANIM_ASK = 'qustion-animIn';
+var btnUrlFire = 'http://t.cn/AijI5GT1';
 // 
 var LAYER_IS_SHOW = false;// 浮层是否显示
 var radio = window.devicePixelRatio || 1;
@@ -139,12 +140,13 @@ $(window).on('ready', function () {
         iconlist.removeClass(STYPE_ICON_FAULT);
 
         var icon = $(this).find('.J_ask_icon');
-        var res = checkResults(_data.text);
-        if(res) {
+        var obj = getAnswer();
+        if(obj.ans == _data.text) {
             icon.addClass(STYPE_ICON_RIGHT);
         }
         else {
             icon.addClass(STYPE_ICON_FAULT);
+            $(iconlist[obj.idx]).addClass(STYPE_ICON_RIGHT);
         }
         // 
         var timer = setTimeout(function () {
@@ -481,7 +483,7 @@ $(window).on('ready', function () {
                     '<div class="results-btnwrap clearfix">',
                         '<span class="btnTry J_btn_try">试试其他</span>',
                         '<span class="btnDeny">',
-                            '<a href="//sf39.top/Q7nQd1" class="btnFire"><img src="'+pubpath+'images/but_fire.png" ',
+                            '<a href="' + btnUrlFire + '" class="btnFire"><img src="'+pubpath+'images/but_fire.png" ',
                                 'srcset="'+pubpath+'images/but_fire.png 375w, '+pubpath+'images/but_fire@2x.png 750w" alt=""/></a>',
                         '</span>',
                         '<span class="btnTry btnShare J_btn_share">分享</span>',
@@ -526,13 +528,19 @@ $(window).on('ready', function () {
 		var _html = _render(_data);
 		CHILDS.pageResult.html(_html);
 	}
-    // 检查结果
-    function checkResults(res) {
+    // 获取答案
+    function getAnswer(res) {
         var quest = CHILD_CONFIG.questions[userInfo.area];
-        if(quest[userInfo.issueNum].ans == res) {
-            return true;
+        var items = quest[userInfo.issueNum];
+        var flag;
+        var ans;
+        for(var i=0; i<items.list.length; i++) {
+            if(items.list[i].t == items.ans) {
+                flag = i;
+                break;
+            }
         }
-        return false;
+        return {idx: flag, ans: items.ans};
     }
 	// 获取正确数
 	function getCorrectNums () {
@@ -742,7 +750,7 @@ $(window).on('ready', function () {
     CHILDS.shareData = {
         title: '来测测你的防骗level',
         desc: '生活无法“铤而走险”？这里试试',
-        imgUrl: 'http://www.shiyueai.xyz/h5topic/static/images/danger.png',
+        imgUrl: 'http://m.nieban.online/static/images/danger.png',
         link: location.href,
         success: function(){
             alert('分享设置成功');
