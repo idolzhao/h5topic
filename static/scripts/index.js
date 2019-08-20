@@ -741,25 +741,31 @@ $(window).on('ready', function () {
         showLayer({opacity: '0.7'});
         var timer = setTimeout(function () {
             CHILDS.shareImgWrap.empty();
-            initWxShare();
         }, 10);
+    }
+
+    function getConfig () {
+        return $('#J_activityBox').data();
     }
 
     // share.
     CHILDS.shareData = {
         title: '来测测你的防骗level',
         desc: '生活无法“铤而走险”？这里试试',
-        imgUrl: 'http://m.nieban.online/static/images/danger.png',
-        link: location.href,
+        imgUrl: 'http://m.maite.online/static/images/danger.png',
+        link: 'http://m.maite.online/',
+        callback: function () {},
         success: function(){
-            alert('分享设置成功');
+            // alert('分享设置成功');
         }
     };
 
-    function initWxShare () {
-        var parms = $('#J_activityBox').data();
+    CHILDS.initWxShare = function () {
+        var parms = getConfig();
+        CHILDS.wxConfig = parms;
+        CHILDS.shareData.appId = parms.appId;
         wx.config({
-            debug: true,
+            debug: false,
             appId: parms.appId,
             timestamp: parms.timestamp,
             nonceStr: parms.nonceStr,
@@ -773,8 +779,71 @@ $(window).on('ready', function () {
         wx.ready(function() {
             wx.updateAppMessageShareData(CHILDS.shareData);
             wx.updateTimelineShareData(CHILDS.shareData);
-        });        
+        });
     }
+    //微信
+    CHILDS.shareInit_weixin = function(){
+        var ua = CHILDS.parseUA();
+        if(!ua.weixin) {
+            return;
+        }
+        var onBridgeReady = function(){
+            try {
+                WeixinJSBridge.call('showOptionMenu');
+                WeixinJSBridge.call('hideToolbar');
+                // 发送给好友;
+                WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                    WeixinJSBridge.invoke('sendAppMessage',{
+                        "appid": CHILDS.shareData.appId,
+                        "img_url": CHILDS.shareData.imgUrl,
+                        "img_width": "120",
+                        "img_height": "120",
+                        "link": CHILDS.shareData.link,
+                        "desc": CHILDS.shareData.desc,
+                        "title": CHILDS.shareData.title
+                    }, CHILDS.shareData.callback);
+                });
+                // 分享到朋友圈;
+                WeixinJSBridge.on('menu:share:timeline', function(argv){
+                    (CHILDS.shareData.callback)();
+                    WeixinJSBridge.invoke('shareTimeline',{
+                        "img_url": CHILDS.shareData.imgUrl,
+                        "img_width":"120",
+                        "img_height":"120",
+                        "link": CHILDS.shareData.link,
+                        "desc": CHILDS.shareData.desc,
+                        "title": CHILDS.shareData.title
+                    }, CHILDS.shareData.callback);
+                });
+            }catch(e) {}
+        };
+        if(document.addEventListener){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }else if(document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+        }
+    };
+
+    CHILDS.parseUA = function(){
+        var u = navigator.userAgent;
+        var u2 = navigator.userAgent.toLowerCase();
+        return { //移动终端版本信息
+            mobile: !!u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为移动终端
+            pc: !u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为pc终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //是否为ios终端
+            android: u.indexOf('Android') > -1, //是否为android终端
+            weixin: u2.match(/MicroMessenger/i) == "micromessenger" //是否为微信客户端
+        };
+    };
+
+    var wxtimer = setTimeout(function () {
+        CHILDS.initWxShare();
+    }, 500);
+    try {
+        CHILDS.shareInit_weixin();
+    }
+    catch(e) {}
 
     // pageSwitchTo(2);
 });
