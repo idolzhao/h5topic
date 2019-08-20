@@ -759,7 +759,7 @@ $(window).on('ready', function () {
     function initWxShare () {
         var parms = $('#J_activityBox').data();
         wx.config({
-            debug: false,
+            debug: true,
             appId: parms.appId,
             timestamp: parms.timestamp,
             nonceStr: parms.nonceStr,
