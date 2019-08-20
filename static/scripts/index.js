@@ -752,7 +752,7 @@ $(window).on('ready', function () {
     CHILDS.shareData = {
         title: '来测测你的防骗level',
         desc: '生活无法“铤而走险”？这里试试',
-        imgUrl: 'http://m.maite.online/static/images/danger.png',
+        imgUrl: 'http://m.maite.online/static/images/atrisk.png',
         link: 'http://m.maite.online/',
         callback: function () {},
         success: function(){
