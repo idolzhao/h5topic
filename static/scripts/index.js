@@ -698,7 +698,8 @@ $(window).on('ready', function () {
             var timer2 = setTimeout(function() {
                 tost.fadeOut(200).css({
                     'opacity': '0',
-                    'zIndex': '0'
+                    'zIndex': '0',
+                    'display': 'none'
                 });
                 CHILDS.tostIsShow = false;
             }, 3000);

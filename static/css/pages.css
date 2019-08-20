@@ -179,6 +179,7 @@ audio.audio-music {
     left: 50%;
 }
 .tost-wrap {
+    display: none;
     position: absolute;
     opacity: 0;
 }
