@@ -18,10 +18,10 @@ $info = $jssdk->getInfo();
     <meta property="og:type" content="website" />
     <meta property="og:title" content="来测测你的防骗level">
     <meta property="og:description" content="生活无法“铤而走险”？这里试试">
-    <meta property="og:image" content="//m.nieban.online/static/images/danger.png">
-    <meta property="og:url" content="//m.nieban.online/">
-    <meta name="image" content="//m.nieban.online/static/images/danger.png"/>
-    <meta name="imageUrl" content="//m.nieban.online/static/images/danger.png"/>
+    <meta property="og:image" content="//m.maite.online/static/images/danger.png">
+    <meta property="og:url" content="//m.maite.online/">
+    <meta name="image" content="//m.maite.online/static/images/danger.png"/>
+    <meta name="imageUrl" content="//m.maite.online/static/images/danger.png"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
@@ -33,9 +33,9 @@ $info = $jssdk->getInfo();
     <script src="static/libs/html2canvas_v1.0.js"></script>
 </head>
 <body>
-    <div style="display:none;"><img src="//m.nieban.online/static/images/danger.png" alt=""></div>
-    <iframe id="iframe-music" width="0" height="0" border="0" style="display: none;" class="audio-iframe" src="http://m.nieban.online/music.html" allow="autoplay 'src' 'http://m.nieban.online/'"></iframe>
-    <audio id="bg-music" class="audio-music J_audioMusic" src="http://m.nieban.online/static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
+    <div style="display:none;"><img src="//m.maite.online/static/images/danger.png" alt=""></div>
+    <iframe id="iframe-music" width="0" height="0" border="0" style="display: none;" class="audio-iframe" src="http://m.maite.online/music.html" allow="autoplay 'src' 'http://m.maite.online/'"></iframe>
+    <audio id="bg-music" class="audio-music J_audioMusic" src="http://m.maite.online/static/audio/JCM_JM_Vasco.mp3" loop preload="auto" hidden></audio>
     <div class="page-container" id="J_activityBox"  data-app-id="<?php echo $info["appId"];?>" 
         data-timestamp="<?php echo $info["timestamp"];?>" data-nonce-str="<?php echo $info["nonceStr"];?>" 
         data-signature="<?php echo $info["signature"];?>">
