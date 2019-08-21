@@ -33,15 +33,6 @@ audio.audio-music {
     -moz-animation-play-state: paused;
     -o-animation-play-state: paused
 }
-.icon-music,
-.icon-error,
-.icon-correct,
-.icon-fault,
-.icon-star {
-    background-image: url("../images/icon_sprite.png");
-    background-size: 1rem 3.14rem;
-    background-repeat: no-repeat;
-}
 
 .page-init {
     display: none;
@@ -214,7 +205,7 @@ audio.audio-music {
 .qrcode-close {
     display: block;
     position: absolute;
-    z-index: 10;
+    z-index: 20;
     background-image: url("../images/close.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -269,9 +260,6 @@ audio.audio-music {
 }
 .btnSwitch {
     display: inline-block;
-    height: 0.44rem;
-    line-height: 0.44rem;
-    border-radius: 0.22rem;
     box-shadow: 0 0.04rem 0.06rem 0 rgba(0,0,0,0.10);
     text-align: center;
 }
@@ -526,11 +514,4 @@ audio.audio-music {
     font-family: "SourceHanSansCN-Medium";
     color: #333333;
     font-weight: bold;
-}
-
-.btnFire,
-.movie-banner {
-    background-image: url("../images/fire_share.png");
-    background-size: 2.66rem 3.57rem;
-    background-repeat: no-repeat;
 }
