@@ -466,7 +466,7 @@ audio.audio-music {
     font-family: "SourceHanSansCN-Medium";
     color: #FC5B59;
     text-align: center;
-    border-bottom: 1px solid #666666;
+    background: url("../images/c666x1.png") repeat-x 0 bottom;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

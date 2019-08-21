@@ -680,6 +680,14 @@ html {
     height: 0.54rem;
     border-width: 0.08rem;
 }
+.results-drawing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 3.6rem;
+    height: 2.9rem;
+}
 .results-wrap {
     top: 1.6rem;
 }
@@ -695,11 +703,11 @@ html {
     display: inline-block;
     height: 0.24rem;
     line-height: 0.24rem;
-    font-size: 0.14rem;
+    font-size: 0.16rem;
 }
 .results-item span.restUser {
     width: 55%;
-    font-size: 0.16rem;
+    font-size: 0.18rem;
     margin-bottom: -0.04rem;
 }
 
@@ -908,16 +916,16 @@ html {
     background-repeat: no-repeat;
 }
 .result-school .results-subs-bg {
-    background-image: url("../images/school_res_pic2@2x.png");
+    background-image: url("../images/school_res_pic2@3x.png");
 }
 .result-family .results-subs-bg {
-    background-image: url("../images/home_res_pic2@2x.png");
+    background-image: url("../images/family_res_pic2@3x.png");
 }
 .result-subway .results-subs-bg {
-    background-image: url("../images/subway_res_pic2@2x.png");
+    background-image: url("../images/subway_res_pic2@3x.png");
 }
 .result-scenic .results-subs-bg {
-    background-image: url("../images/scenic_res_pic2@2x.png");
+    background-image: url("../images/scenic_res_pic2@3x.png");
 }
 }
 body {
