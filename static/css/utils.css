@@ -4,13 +4,11 @@ html{-webkit-text-size-adjust:none;-ms-text-size-adjust:none}body,h1,h2,h3,h4,h5
 html {
     font-size: 100px
 }
-
 body,
 html {
     height: 100%;
 }
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 376px) {
 html {
     font-size: 100px;
     font-size: 26.66666667vw
@@ -32,6 +30,16 @@ html {
     width: 0.24rem;
     height: 0.24rem;
 }
+.icon-music,
+.icon-error,
+.icon-correct,
+.icon-fault,
+.icon-star {
+    background-image: url("../images/icon_sprite.png");
+    background-size: 1rem 3.14rem;
+    background-repeat: no-repeat;
+}
+
 .page-init {
     width: 3.75rem;
 }
@@ -78,6 +86,9 @@ html {
     top: 0.13rem;
     width: 0.3rem;
     height: 0.3rem;
+}
+.inputBox .inputUser {
+    font-size: 0.18rem;
 }
 /* main-scene */
 .page-main {
@@ -138,6 +149,9 @@ html {
 }
 .btnSwitch {
     width: 1.3rem;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    border-radius: 0.22rem;
 }
 .modalTitle,
 .modalStone,
@@ -254,6 +268,9 @@ html {
 .movie-banner {
     width: 1.33rem;
     height: 0.46rem;
+    background-image: url("../images/fire_share.png");
+    background-size: 2.66rem 3.57rem;
+    background-repeat: no-repeat;
     background-position: 0 -1.99rem;
 }
 .btnTry {
@@ -273,6 +290,9 @@ html {
     height: 0.9rem;
     margin-left: -0.33rem;
     margin-top: -0.5rem;
+    background-image: url("../images/fire_share.png");
+    background-size: 2.66rem 3.57rem;
+    background-repeat: no-repeat;
     background-position: -1.62rem 0;
 }
 .page-init .result-outer {
@@ -280,20 +300,21 @@ html {
     margin-top: 0;
 }
 .reveal-qrimg {
-    width: 3rem;
-    height: 5.4rem;
+    width: 2.7rem;
+    height: 4.9rem;
 }
 .shot-wrap {
     position: absolute;
-    top: -2.7rem;
-    left: -1.5rem;
-    width: 3rem;
-    height: 5.4rem;
+    z-index: 10;
+    top: -2.45rem;
+    left: -1.35rem;
+    width: 2.7rem;
+    height: 4.9rem;
     overflow: hidden;
 }
 .qrcode-img {
-    width: 3rem;
-    height: 5rem;
+    width: 2.7rem;
+    height: 4.5rem;
     margin-top: 0.35rem;
 }
 .qrcode-close {
@@ -434,302 +455,331 @@ html {
     background-position: -3.6rem 0;
 }
 }
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 376px) {
 .page-container .page_0,
 .page-cont {
-    width: 7.5rem;
+    width: 4.14rem;
 }
 .musicWrap {
-    top: 0.3rem;
-    right: 0.3rem;
-    width: 0.6rem;
-    height: 0.6rem;
-    line-height: 0.6rem;
+    top: 0.15rem;
+    right: 0.15rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
     text-align: center;
 }
 .icon-music {
     display: inline-block;
-    width: 0.48rem;
-    height: 0.48rem;
-    margin-top: 0.06rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .page-cont .page-init {
-    width: 7.5rem;
+    width: 4.14rem;
 }
 /* page-loading */
 .loadBg {
-    width: 6.4rem;
-    height: 2.5rem;
+    width: 3.2rem;
+    height: 1.75rem;
     background-image: url("../images/logo@2x.png");
 }
 .loadAnim {
     width: 2.4rem;
     height: 3rem;
-    margin: -0.15rem auto 0;
+    margin: -0.25rem auto 0;
 }
 .loadWrap {
     position: absolute;
-    top: -2.8rem;
-    left: -3.2rem;
+    top: -2.5rem;
+    left: -1.6rem;
+}
+.loadWrap .loadTop {
+    margin-top: -0.2rem;
 }
 .loadBarWrap {
     width: 80%;
-    height: 0.2rem;
+    height: 0.14rem;
     border: 0.02rem solid #fdc1c6;
-    border-radius: 0.2rem;
+    border-radius: 0.14rem;
 }
 .loadTxt {
-    margin-top: -0.1rem;
-    font-size: 0.28rem;
+    margin-top: -0.03rem;
+    font-size: 0.18rem;
 }
 /* page-login */
 .page-login {
-    width: 7.5rem;
+    width: 4.14rem;
     margin: 0 auto;
 }
 .loginBanner {
-    width: 7.5rem;
-    height: 8.1rem;
-    margin-bottom: 0.2rem;
+    width: 4.14rem;
+    height: 4.8rem;
+    margin-bottom: 0.15rem;
 }
 .inputBox {
-    float: left;
-    width: 65%;
+    width: 100%;
 }
 .inputBox .iconTips {
     top: 0;
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.inputBox .inputUser {
+    font-size: 0.22rem;
 }
 .inpuBtn {
-    float: right;
+    
 }
 /* main-scene */
 .page-main {
-    width: 7.5rem;
+    width: 4.14rem;
     height: 13.34rem;
     overflow: hidden;
 }
 /* page-layer */
 .reveal-modal {
-    width: 6.2rem;
-    height: 7rem;
+    width: 3.3rem;
+    height: 5.2rem;
 }
 .modal-item {
     position: absolute;
-    top: -3.5rem;
-    left: -3.1rem;
+    top: -2.6rem;
+    left: -1.55rem;
 }
 
-.tost-wrap {
-    width: 6.6rem;
-    height: 2rem;
-}
 .modalTop {
     position: relative;
-    height: 0.86rem;
-    margin-bottom: 0.3rem;
+    height: 0.43rem;
+    margin-bottom: 0.15rem;
 }
 .modalMid {
-    margin-bottom: 0.3rem;
-}
-.modalbanner {
-    width: 5.8rem;
-    height: 2.88rem;
+    margin-bottom: 0.2rem;
 }
 .modal-box .modalTitle {
-    width: 3.28rem;
-    height: 0.86rem;
-    line-height: 0.86rem;
-    font-size: 0.34rem;
+    width: 1.64rem;
+    height: 0.43rem;
+    line-height: 0.43rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .modal-box .modalStone {
-    width: 1.52rem;
-    height: 0.94rem;
+    width: 0.76rem;
+    height: 0.47rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .modalSectionTitle {
     margin-bottom: 0.12rem;
     font-size: 0.16rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .modalSectionCont {
     margin-bottom: 0.15rem;
     font-size: 0.14rem;
 }
+.modalbanner {
+    width: 2.9rem;
+    height: 1.42rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 .starWrap .icon-star {
     display: inline-block;
-    width: 0.4rem;
-    height: 0.4rem;
-    margin-top: -0.06rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-top: -0.04rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .modalBtnWrap {
-    height: 0.8rem;
+    height: 0.6rem;
 }
 .btnSwitch {
-    width: 1.8rem;
-}
-.modalTitle,
-.modalStone,
-.qustion-item,
-.btnTry {
-    background-image: url("../images/sprite_stone2x.png");
-    background-size: 13.84rem 4.87rem;
-    background-repeat: no-repeat;
+    width: 1.4rem;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    border-radius: 0.22rem;
 }
 /* page-questions */
 .page-question,
 .page-results {
-    width: 6.8rem;
+    width: 3.6rem;
     margin: 0.5rem auto 0;
 }
 .qustion-top {
-    width: 6.78rem;
-    height: 4.94rem;
+    width: 3.6rem;
+    height: 2.7rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .qustion-foot {
     margin-top: 0.2rem;
 }
 .qustion-bottom {
-    margin-top: -2.3rem;
+    margin-top: -1.6rem;
 }
 .askTitleItem {
-    height: 1.2rem;
-    margin: 0 auto 1.2rem;
-    line-height: 1.8;
-    font-size: 0.16rem;
+    height: 0.9rem;
+    margin: 0 auto 0.4rem;
+    line-height: 1.5;
+    font-size: 0.14rem;
 }
 .qustion-list {
-    width: 6.4rem;
-    /*height: 4.98rem;*/
+    /*width: 6.4rem;*/
 }
 .qustion-item {
-    height: 1.16rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.52rem;
-    line-height: 1.16rem;
+    height: 0.65rem;
+    margin-bottom: 0.15rem;
+    font-size: 0.3rem;
+    line-height: 0.65rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .questChar {
     display: inline-block;
-    margin: 0 0.2rem;
+    margin: 0 0.05rem 0 0.1rem;
 }
 .questTitle {
-    font-size: 0.2rem;
+    font-size: 0.18rem;
 }
 .qustion-item .questRes {
-    width: 0.6rem;
-    height: 0.6rem;
-    top: 0.25rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    top: 0.1rem;
     right: 0.1rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .dot-list {
-    padding: 0.4rem 0 0.2rem;
+    padding: 0.2rem 0 0.1rem;
 }
 .dot-item {
-    width: 0.2rem;
-    height: 0.2rem;
-    margin: 0 0.28rem;
-    border-radius: 0.2rem;
+    width: 0.12rem;
+    height: 0.12rem;
+    margin: 0 0.1rem;
+    border-radius: 0.12rem;
 }
 /* page-results */
 .results-top {
-    height: 4.68rem;
+    height: 2.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .results-mid {
-    height: 5.36rem;
-    margin-bottom: 0.5rem;
+    height: 2.9rem;
+    margin-bottom: 0.2rem;
 }
 .results-catimg {
-    right: 0.3rem;
-    bottom: 0.45rem;
-    width: 1.28rem;
-    height: 1.28rem;
-    border-width: 0.16rem;
+    right: 0.15rem;
+    bottom: 0.2rem;
+    width: 0.54rem;
+    height: 0.54rem;
+    border-width: 0.08rem;
 }
 .results-wrap {
-    top: 3rem;
+    top: 1.6rem;
 }
 .results-wrap .results-list {
-    width: 6.4rem;
+    width: 3.6rem;
     margin: 0 auto;
 }
+
 .results-item {
-    height: 0.76rem;
+    height: 0.38rem;
 }
 .results-item span {
     display: inline-block;
-    height: 0.48rem;
-    line-height: 0.48rem;
-    font-size: 0.24rem;
+    height: 0.24rem;
+    line-height: 0.24rem;
+    font-size: 0.14rem;
 }
 .results-item span.restUser {
-    width: 65%;
-    font-size: 0.32rem;
-    margin-bottom: -0.06rem;
+    width: 55%;
+    font-size: 0.16rem;
+    margin-bottom: -0.04rem;
 }
 
 .results-btnwrap {
-    top: -0.5rem;
-    height: 1.8rem;
+    top: -0.2rem;
+    height: 1rem;
 }
 .qrimg-wrap {
-    width: 0.96rem;
-    height: 0.96rem;
-    border: 0.04rem solid #FFFFFF;
+    width: 0.6rem;
+    height: 0.6rem;
+    border: 0.02rem solid #FFFFFF;
 }
 .qrimg-desc {
-    margin-left: 0.2rem;
-    margin-top: 0.38rem;
-    font-size: 0.2rem;
-    line-height: 0.32rem;
+    margin-left: 0.1rem;
+    margin-top: 0.18rem;
+    font-size: 0.14rem;
+    line-height: 0.16rem;
 }
 .movie-banner {
-    width: 2.66rem;
-    height: 0.92rem;
-    background-position: 0 -2.65rem;
+    width: 1.6rem;
+    height: 0.55rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/movietext@2x.png");
 }
 .btnTry {
-    width: 2.08rem;
-    height: 0.88rem;
-    margin-top: 0.56rem;
-    line-height: 0.88rem;
-    font-size: 0.28rem;
+    width: 1.16rem;
+    height: 0.49rem;
+    margin-top: 0.2rem;
+    line-height: 0.49rem;
+    font-size: 0.16rem;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .btnDeny {
     position: absolute;
-    top: 40%;
-    left: 52%;
+    top: 25%;
+    left: 51%;
 }
 .btnFire {
-    width: 1.44rem;
-    height: 1.8rem;
-    margin-left: -0.72rem;
-    margin-top: -0.9rem;
+    width: 0.9rem;
+    height: 1.2rem;
+    margin-left: -0.45rem;
+    margin-top: -0.6rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/but_redfire@2x.png");
 }
 .page-init .result-outer {
     padding: 0.2rem;
     margin-top: 0;
 }
 .reveal-qrimg {
-    width: 4.8rem;
-    height: 8.7rem;
+    width: 3.3rem;
+    height: 5.9rem;
 }
 .shot-wrap {
     position: absolute;
-    top: -4.35rem;
-    left: -2.4rem;
-    width: 4.8rem;
-    height: 8.7rem;
+    z-index: 10;
+    top: -2.95rem;
+    left: -1.65rem;
+    width: 3.3rem;
+    height: 5.9rem;
     overflow: hidden;
 }
 .qrcode-img {
-    width: 4.8rem;
-    height: 8rem;
-    margin-top: 0.7rem;
+    width: 3.3rem;
+    height: 5.5rem;
+    margin-top: 0.35rem;
 }
 .qrcode-close {
     top: 0;
-    right: 0.1rem;
-    width: 0.6rem;
-    height: 0.6rem;
+    right: 0.05rem;
+    width: 0.3rem;
+    height: 0.3rem;
+}
+.tost-wrap,
+.tost-wrap img {
+    width: 2.7rem;
+    height: 0.9rem;
 }
 .sharetips-wrap {
     position: absolute;
@@ -755,67 +805,79 @@ html {
     color: #fc8a94;
 }
 .icon-music {
-    background-position: -0.4rem -2.6rem;
+    background-image: url("../images/tx_icon_music@2x.png");
 }
 .icon-correct {
-    background-position: -0.4rem -0.7rem;
+    background-image: url("../images/tx_icon_right@2x.png");
 }
 .icon-fault {
-    background-position: -0.4rem 0;
+    background-image: url("../images/tx_icon_error@2x.png");
 }
 .icon-error {
-    background-position: -0.4rem -1.4rem;
+    background-image: url("../images/tx_icon_delete@2x.png");
 }
 .icon-star {
-    background-position: -0.4rem -2.1rem;
+    background-image: url("../images/tx_icon_star@2x.png");
 }
 .modal-stone-school {
-    background-position: 0 -2.5rem;
+    background-image: url("../images/school_cover_stone@2x.png");
 }
 .modal-stone-family {
-    background-position: 0 0;
+    background-image: url("../images/home_cover_stone@2x.png");
 }
 .modal-stone-scenic {
-    background-position: 0 -1.25rem;
+    background-image: url("../images/scenic_cover_stone@2x.png");
 }
 .modal-stone-subway {
-    background-position: 0 -3.75rem;
+    background-image: url("../images/subway_cover_stone@2x.png");
 }
 .modal-title-school {
-    background-position: -1.7rem -2.5rem;
+    background-image: url("../images/school_cover_title@2x.png");
 }
 .modal-title-family {
-    background-position: -1.7rem 0;
+    background-image: url("../images/home_cover_title@2x.png");
 }
 .modal-title-scenic {
-    background-position: -1.7rem -1.25rem;
+    background-image: url("../images/scenic_cover_title@2x.png");
 }
 .modal-title-subway {
-    background-position: -1.7rem -3.75rem;
+    background-image: url("../images/subway_cover_title@2x.png");
+}
+.modal-layer-family {
+    background-image: url("../images/home_cover_pic@2x.png");
+}
+.modal-layer-scenic {
+    background-image: url("../images/scenic_cover_pic@2x.png");
+}
+.modal-layer-school {
+    background-image: url("../images/school_cover_pic@2x.png");
+}
+.modal-layer-subway {
+    background-image: url("../images/subway_cover_pic@2x.png");
 }
 .qustion-school li.qustion-item {
-    background-position: -7.5rem -2.5rem;
+    background-image: url("../images/school_items@2x.png");
 }
 .qustion-family li.qustion-item {
-    background-position: -7.5rem 0;
+    background-image: url("../images/home_items@2x.png");
 }
 .qustion-subway li.qustion-item {
-    background-position: -7.5rem -3.75rem;
+    background-image: url("../images/subway_items@2x.png");
 }
 .qustion-scenic li.qustion-item {
-    background-position: -7.5rem -1.25rem;
+    background-image: url("../images/scenic_items@2x.png");
 }
 .result-school .btnTry {
-    background-position: -5.2rem -2.5rem;
+    background-image: url("../images/school_btn@2x.png");
 }
 .result-family .btnTry {
-    background-position: -5.2rem 0;
+    background-image: url("../images/home_btn@2x.png");
 }
 .result-subway .btnTry {
-    background-position: -5.2rem -3.75rem;
+    background-image: url("../images/subway_but@2x.png");
 }
 .result-scenic .btnTry {
-    background-position: -5.2rem -1.25rem;
+    background-image: url("../images/scenic_but@2x.png");
 }
 .qustion-school .qustion-bg {
     background-image: url("../images/topic_school@2x.png");
@@ -842,33 +904,20 @@ html {
     background-image: url("../images/result_main_scenic@2x.png");
 }
 .results-subs-bg {
-    background-image: url("../images/result_subs2x.png");
+    background-size: contain;
     background-repeat: no-repeat;
-    background-size: 6.8rem 21.92rem;
 }
 .result-school .results-subs-bg {
-    background-position: 0 -11rem;
+    background-image: url("../images/school_res_pic2@2x.png");
 }
 .result-family .results-subs-bg {
-    background-position: 0 0;
+    background-image: url("../images/home_res_pic2@2x.png");
 }
 .result-subway .results-subs-bg {
-    background-position: 0 -16.5rem;
+    background-image: url("../images/subway_res_pic2@2x.png");
 }
 .result-scenic .results-subs-bg {
-    background-position: 0 -5.5rem;
-}
-.modal-layer-school {
-    background: url("../images/layer_school@2x.png") no-repeat 0 0;
-}
-.modal-layer-family {
-    background: url("../images/layer_family@2x.png") no-repeat 0 0;
-}
-.modal-layer-scenic {
-    background: url("../images/layer_scenic@2x.png") no-repeat 0 0;
-}
-.modal-layer-subway {
-    background: url("../images/layer_subway@2x.png") no-repeat 0 0;
+    background-image: url("../images/scenic_res_pic2@2x.png");
 }
 }
 body {
