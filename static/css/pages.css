@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+/**/
 .page-cont {
     position: relative;
     margin: 0 auto;
@@ -144,15 +144,10 @@ audio.audio-music {
 }
 .loginStart {
     display: block;
-    width: 2rem;
-    height: 0.56rem;
     margin: 0 auto;
-    line-height: 0.56rem;
-    text-align: center;
     background: #D9D9D9;
-    border-radius: 0.285rem;
+    text-align: center;
     font-family: "SourceHanSansCN-Medium";
-    font-size: 0.16rem;
     color: #FFFFFF;
 }
 .inpuBtn .selected {
@@ -255,7 +250,6 @@ audio.audio-music {
     color: #999999;
     line-height: 1.2;
 }
-
 .detailList {
     margin-bottom: 0.15rem;
 }
@@ -327,8 +321,8 @@ audio.audio-music {
 .askTitleItem {
     display: flex;
     align-items: center;
-    width: 85%;
-
+    width: 88%;
+    text-align: justify;
     opacity: 0;
     transform: translateY(25px);
     transition: all .4s;
@@ -425,6 +419,10 @@ audio.audio-music {
     z-index: 15;
     border-style: solid;
 }
+.icon-music img,
+.modalStone img,
+.modalbanner img,
+.qustion-top img,
 .btnFire img,
 .movie-banner img,
 .results-main img,
@@ -456,9 +454,10 @@ audio.audio-music {
     width: 100%;
 }
 .results-item {
-    width: 100%;
+    width: 95%;
     text-align: center;
     vertical-align: middle;
+    overflow: hidden;
 }
 
 .restCongrats {

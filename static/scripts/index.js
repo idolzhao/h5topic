@@ -68,7 +68,7 @@ $(window).on('ready', function () {
             CHILDS.loadtxt.text(y + "%");
             if (y >= 100) {
                 clearInterval(id);
-                pageSwitchTo(4);
+                pageSwitchTo(1);
             }
         }, 25);
     }
@@ -79,7 +79,6 @@ $(window).on('ready', function () {
     CHILDS.musicIsPlay = false;
     CHILDS.audioImg.on('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
         playMusic();
     });
 
@@ -96,6 +95,8 @@ $(window).on('ready', function () {
         }catch(e) {}
         CHILDS.musicIsPlay = !CHILDS.musicIsPlay;
     }
+    CHILDS.mbody.one('click', playMusic);
+
     // page-login
     // btn-开始冒险
     if(CHILDS.btnStart && CHILDS.btnStart.length) {
@@ -123,13 +124,6 @@ $(window).on('ready', function () {
     	}
     });
 
-    // 禁止页面上下滑屏
-    // CHILDS.activityBox.on("touchmove", function(e) {
-    //      return false;
-    // });
-    // 选项
-    // CHILDS.activityBox.delegate('.J_img_qrcode', 'click', function (e) {        
-    // });
     CHILDS.activityBox.delegate('.J_question_ansItem', 'click', function (e) {
 		var _data = $(this).data();
 		// console.log('=========question-item', userInfo.area, userInfo.issueNum, _data.text);
@@ -180,7 +174,6 @@ $(window).on('ready', function () {
         CHILDS.shareImgWrap = $('#J_page_shareimg .J_result_item');
         CHILDS.shareImgWrap.addClass('result-outer');
         CHILDS.shareImgWrap.find('.J_result_qrcode').remove();
-
         pageSwitchTo(5, function () {
             var timer = setTimeout(function () {
                 createImage();
@@ -214,16 +207,10 @@ $(window).on('ready', function () {
     function initWin () {
         var w = $(window).width();
         var h = $(window).height();
-        // if(w > 750) {
-        //     w = 750;
-        // }
         if(!isWideScreen()) {
             w = w + "px";
             h = h + "px";
-            // $("html").height(h);
-            // CHILDS.activityBox.height(h).width(w);
             mainScene.height(h).width(w);
-            // CHILDS.pages.height(h);
         }
     }
     // 检测输入昵称
@@ -264,10 +251,7 @@ $(window).on('ready', function () {
 				CHILDS.inputUser.val(userInfo.nickname);
                 CHILDS.inputUser.trigger('input');
 			}
-            pageMove(num, function () {
-                // takeFocus();
-                // CHILDS.mbody.removeClass(STYPE_PAGE_SCREEN+'0');
-            });
+            pageMove(num);
             
             CHILDS.animLoginScene({
                 wrap: $('.J_login_banner'),
@@ -303,7 +287,6 @@ $(window).on('ready', function () {
 			}
             userInfo.issueNum = 0;
             userInfo.question = {};
-            pageQuetsWrap.addClass('qustion-'+userInfo.area);
 			renderQustions();
 			choiceQuestion(userInfo.issueNum, true);
             pageMove(num);
@@ -374,7 +357,6 @@ $(window).on('ready', function () {
         var artRender = template.compile(tpl);
         var artTxt = artRender(info);
         CHILDS.layerIntros.html(artTxt);
-        // $('#J_layer_wrap').removeClass('dn');
         // 
         var starDoms = CHILDS.layerIntros.find('.J_stars');
         if(info.difficulty.value && starDoms.length) {
@@ -387,7 +369,6 @@ $(window).on('ready', function () {
         // 
         showLayer();
     }
-
 	// 生成浮层模板
 	function createLayerTmpl () {
 		return ['',
@@ -395,10 +376,16 @@ $(window).on('ready', function () {
 			'<div class="modal-box">',
 			'<div class="modalTop">',
 			'<div class="modalTitle modal-title-{{type}}">{{title}}</div>',
-			'<div class="modalMore"><span class="modalStone modal-stone-{{type}}""></span></div>',
+			'<div class="modalMore"><span class="modalStone modal-stone-{{type}}">',
+                '<img src="'+pubpath+'images/layer_stone_{{type}}.png"',
+                    'srcset="'+pubpath+'images/layer_stone_{{type}}@2x.png 400w" />',
+            '</span></div>',
 			'</div>',
 			'<div class="modalMid">',
-                '<div class="modalbanner modal-layer-{{type}}"></div>',
+                '<div class="modalbanner modal-layer-{{type}}">',
+                    '<img src="'+pubpath+'images/layer_{{type}}.png"',
+                    'srcset="'+pubpath+'images/layer_{{type}}@2x.png 400w" />',
+                '</div>',
 			'</div>',
 			'<div class="modalBot">',
 			'<ul class="detailList">',
@@ -421,36 +408,40 @@ $(window).on('ready', function () {
 			'</div>',
 			'</div>'].join('');
 	};
-    // 问答模板
-    // '<div class="askTitleItem J_ask_anim">',
-    //                     '<div class="askTopicOut"><span class="askTopic">{{index+1}}. {{item.ask}}</span></div>',
-    //                 '</div>',
+
     function createAskTmpl () {
-        return [
-            '{{ each questions as item index}}',
-                '<div class="ask-list J_ask_item">',
-                    '<div class="askTitleItem J_ask_anim">',
-                        '{{index+1}}. {{item.ask}}',
+        return ['',
+        '<div class="question-wrap qustion-{{type}}">',
+            '<div class="qustion-top qustion-bg">',
+                '<img src="'+pubpath+'images/topic_{{type}}.png"',
+                    'srcset="'+pubpath+'images/topic_{{type}}@2x.png 400w" />',
+            '</div>',
+            '<div class="qustion-bottom J_question_asklist">',
+                '{{ each questions as item index}}',
+                    '<div class="ask-list J_ask_item">',
+                        '<div class="askTitleItem J_ask_anim">',
+                            '{{index+1}}. {{item.ask}}',
+                        '</div>',
+                        '<ul class="qustion-list J_ask_list">',
+                            '{{ each item.list as ans idx}}',
+                                '<li class="qustion-item J_ask_anim J_question_ansItem" data-text="{{ans.t}}">',
+                                    '<span class="questChar">{{ans.t}}</span>',
+                                    '<span class="questTitle">{{ans.v}}</span>',
+                                    '<span class="questRes J_ask_icon"></span>',
+                                '</li>',
+                            '{{/each}}',
+                        '</ul>',
                     '</div>',
-                    '<ul class="qustion-list J_ask_list">',
-                        '{{ each item.list as ans idx}}',
-                            '<li class="qustion-item J_ask_anim J_question_ansItem" data-text="{{ans.t}}">',
-                                '<span class="questChar">{{ans.t}}</span>',
-                                '<span class="questTitle">{{ans.v}}</span>',
-                                '<span class="questRes J_ask_icon"></span>',
-                            '</li>',
+                '{{/each}}',
+                '<div class="qustion-foot">',
+                    '<div class="dot-list J_question_dot">',
+                        '{{ each questions as item index}}',
+                        '<span class="dot-item J_quest_dotItem" data-idx="{{index}}"></span>',
                         '{{/each}}',
-                    '</ul>',
+                    '</div>',
                 '</div>',
-            '{{/each}}',
-            '<div class="qustion-foot">',
-                '<div class="dot-list J_question_dot">',
-                    '{{ each questions as item index}}',
-                    '<span class="dot-item J_quest_dotItem" data-idx="{{index}}"></span>',
-                    '{{/each}}',
-                '</div>',
-            '</div>'
-        ].join('');
+            '</div>',
+        '</div>'].join('');
     }
 	// 生成结果模板
 	function createResultTmpl () {
@@ -459,14 +450,15 @@ $(window).on('ready', function () {
             '<div class="results-content">',
                 '<div class="results-top">',
                     '<div class="results-main">',
-                        '<img src="'+pubpath+'images/result_main_{{type}}.png"',
-                            'srcset="'+pubpath+'images/result_main_{{type}}@2x.png 400w" /></div>',
+                        '<img class="J_request_img" src="'+pubpath+'images/result_main_{{type}}.png"',
+                            'srcset="'+pubpath+'images/result_main_{{type}}@2x.png 400w" />',
+                    '</div>',
                     '<span class="results-catimg results-code-{{type}} J_result_qrcode"><img src="'+pubpath+'images/sharechild.jpg" /></span>',
                 '</div>',
                 '<div class="results-mid">',
                     '<div class="results-subs">',
-                        '<img src="'+pubpath+'images/result_subs_{{type}}.png" ',
-                            'srcset="'+pubpath+'images/{{type}}_res_pic2@2x.png 400w" />',
+                        '<img class="J_request_img" src="'+pubpath+'images/result_subs_{{type}}.png" ',
+                            'srcset="'+pubpath+'images/result_subs_{{type}}@2x.png 400w" />',
                     '</div>',
                     '<div class="results-wrap">',
                         '<ul class="results-list">',
@@ -507,21 +499,21 @@ $(window).on('ready', function () {
             '<span class="qrimg-wrap"><img src="static/images/sharenet.png" width="100%" height="100%" /></span>',
             '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
             '<span class="movie-banner">',
-                '<img src="'+pubpath+'images/movietext.png" ',
-                    'srcset="'+pubpath+'images/movietext@2x.png 400w" />',
+                '<img src="'+pubpath+'images/movietext@2x.png" />',
             '</span>',
         '</div>'].join('');
     }
 	// 渲染问题页
 	function renderQustions () {
 		var info = {
-			questions: CHILD_CONFIG.questions[userInfo.area]
+			questions: CHILD_CONFIG.questions[userInfo.area],
+            type: userInfo.area
 		};
 
         var _tpl = createAskTmpl();
         var _render = template.compile(_tpl);
         var _html = _render(info);
-        $('.J_question_asklist').html(_html);
+        pageQuetsWrap.html(_html);
 
         CHILDS.questDot = $('.J_question_dot');
 	}
@@ -733,17 +725,48 @@ $(window).on('ready', function () {
         return window.innerWidth > 750;
     }
 
+    function parseValue (value) {
+        return parseInt(value, 10);
+    }
+    function getDpr () {
+        if (window.devicePixelRatio && window.devicePixelRatio > 1) {
+          return window.devicePixelRatio;
+        }
+        return 1;
+    }
+
     function createImage () {
-        var dom = $('#J_page_shareimg .J_result_item');
-        var w = dom.width(), h = dom.height();
-        html2canvas(dom[0], {
-            width: w,
-            height: h,
-            dpi: window.devicePixelRatio
-        }).then(function (canvas) {
-            var dataUrl = canvas.toDataURL("image/png", 1.0);
-            insertImage(dataUrl);
+        var dom = $('#J_page_shareimg .J_result_item')[0];
+        var box = window.getComputedStyle(dom);
+        // dom节点计算后宽高
+        var width = parseValue(box.width);
+        var height = parseValue(box.height);
+        // 获取像素比
+        var scaleBy = getDpr();
+        // 创建自定义的canvas元素
+        var canvas = document.createElement('canvas');
+        // 设置canvas元素属性宽高为 DOM 节点宽高 * 像素比
+        canvas.width = width * scaleBy;
+        canvas.height = height * scaleBy;
+        // 设置canvas css 宽高为DOM节点宽高
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        // 获取画笔
+        var context = canvas.getContext('2d');
+        // 将所有绘制内容放大像素比倍
+        context.scale(scaleBy, scaleBy);
+        // 设置需要生成的图片的大小，不限于可视区域（即可保存长图）
+        var w = dom.style.width;
+        var h = dom.style.height;
+        html2canvas(dom, {
+          width: w,
+          height: h
+        }).then(function(canvas) {
+          // 将canvas转换成图片渲染到页面上
+          var url = canvas.toDataURL('image/png');// base64数据
+          insertImage(url);
         });
+
     }
 
     function insertImage (imgUrl) {
@@ -858,6 +881,4 @@ $(window).on('ready', function () {
         CHILDS.shareInit_weixin();
     }
     catch(e) {}
-
-    // pageSwitchTo(2);
 });
