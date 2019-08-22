@@ -68,7 +68,7 @@ $(window).on('ready', function () {
             CHILDS.loadtxt.text(y + "%");
             if (y >= 100) {
                 clearInterval(id);
-                pageSwitchTo(1);
+                pageSwitchTo(4);
             }
         }, 25);
     }
@@ -457,10 +457,17 @@ $(window).on('ready', function () {
 		return ['',
 		'<div class="page-results result-{{type}} J_result_item">',
             '<div class="results-content">',
-                '<div class="results-top results-main-bg">',
+                '<div class="results-top">',
+                    '<div class="results-main">',
+                        '<img src="'+pubpath+'images/result_main_{{type}}.png"',
+                            'srcset="'+pubpath+'images/result_main_{{type}}@2x.png 400w" /></div>',
                     '<span class="results-catimg results-code-{{type}} J_result_qrcode"><img src="'+pubpath+'images/sharechild.jpg" /></span>',
                 '</div>',
-                '<div class="results-mid results-subs-bg">',
+                '<div class="results-mid">',
+                    '<div class="results-subs">',
+                        '<img src="'+pubpath+'images/result_subs_{{type}}.png" ',
+                            'srcset="'+pubpath+'images/{{type}}_res_pic2@2x.png 400w" />',
+                    '</div>',
                     '<div class="results-wrap">',
                         '<ul class="results-list">',
                             '<li class="results-item">',
@@ -483,7 +490,10 @@ $(window).on('ready', function () {
                     '<div class="results-btnwrap clearfix">',
                         '<span class="btnTry J_btn_try">试试其他</span>',
                         '<span class="btnDeny">',
-                            '<a href="' + btnUrlFire + '" class="btnFire"></a>',
+                            '<a href="' + btnUrlFire + '" class="btnFire">',
+                                '<img src="'+pubpath+'images/but_fire.png" ',
+                                    'srcset="'+pubpath+'images/but_fire@2x.png 400w" />',
+                            '</a>',
                         '</span>',
                         '<span class="btnTry btnShare J_btn_share">分享</span>',
                     '</div>',
@@ -496,7 +506,10 @@ $(window).on('ready', function () {
         return ['<div class="results-qrcodewrap clearfix">',
             '<span class="qrimg-wrap"><img src="static/images/sharenet.png" width="100%" height="100%" /></span>',
             '<span class="qrimg-desc">长按测测<br />你的防骗level</span>',
-            '<span class="movie-banner"></span>',
+            '<span class="movie-banner">',
+                '<img src="'+pubpath+'images/movietext.png" ',
+                    'srcset="'+pubpath+'images/movietext@2x.png 400w" />',
+            '</span>',
         '</div>'].join('');
     }
 	// 渲染问题页
